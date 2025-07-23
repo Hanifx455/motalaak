@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة تسجيل الدخول */
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .auth-image {
+            flex: 1;
+            background-image: url('images/login-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .auth-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+        }
+
+        .auth-image-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-image-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .auth-image-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .auth-form {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-logo {
+            max-width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .auth-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .auth-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-check-input {
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .form-check-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            float: left;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #999;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .auth-divider span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .btn-social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background-color: white;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-social i {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+
+        .btn-social.facebook {
+            color: #1877f2;
+        }
+
+        .btn-social.google {
+            color: #ea4335;
+        }
+
+        .btn-social:hover {
+            background-color: #f5f5f5;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .auth-card {
+                flex-direction: column;
+            }
+
+            .auth-image {
+                display: none;
+            }
+
+            .auth-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-image">
+                <div class="auth-image-content">
+                    <h2 class="auth-image-title">مرحباً بك في منصة المتألق في التعليم</h2>
+                    <p class="auth-image-text">انضم إلى مجتمعنا التعليمي واستفد من آلاف الدروس والموارد التعليمية لجميع المراحل الدراسية في الجزائر.</p>
+                </div>
+            </div>
+
+            <div class="auth-form">
+                <div class="auth-header">
+                    <img src="images/logo.svg" alt="المتألق في التعليم" class="auth-logo">
+                    <h1 class="auth-title">مرحباً بعودتك!</h1>
+                    <p class="auth-subtitle">سجل دخولك للوصول إلى حسابك</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <div class="auth-tab active" data-tab="login">تسجيل الدخول</div>
+                    <div class="auth-tab" data-tab="register">إنشاء حساب</div>
+                </div>
+
+                <div id="login-tab" class="tab-content active">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" id="login-email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                            <div class="error-message" id="login-email-error">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password" class="form-label">كلمة المرور</label>
+                            <input type="password" id="login-password" class="form-control" placeholder="أدخل كلمة المرور" required>
+                            <div class="error-message" id="login-password-error">يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="remember-me" class="form-check-input">
+                                <label for="remember-me" class="form-check-label">تذكرني</label>
+                            </div>
+                            <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+                        </div>
+
+                        <button type="submit" class="btn-primary">تسجيل الدخول</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>أو سجل دخولك باستخدام</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button class="btn-social facebook">
+                            <i class="fab fa-facebook-f"></i> فيسبوك
+                        </button>
+                        <button class="btn-social google">
+                            <i class="fab fa-google"></i> جوجل
+                        </button>
+                    </div>
+
+                    <div class="auth-footer">
+                        ليس لديك حساب؟ <a href="#" class="register-link">سجل الآن</a>
+                    </div>
+                </div>
+
+                <div id="register-tab" class="tab-content">
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-name" class="form-label">الاسم الكامل</label>
+                            <input type="text" id="register-name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                            <div class="error-message" id="register-name-error">يرجى إدخال اسمك الكامل</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" id="register-email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                            <div class="error-message" id="register-email-error">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password" class="form-label">كلمة المرور</label>
+                            <input type="password" id="register-password" class="form-control" placeholder="أدخل كلمة المرور" required>
+                            <div class="error-message" id="register-password-error">يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm-password" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" id="register-confirm-password" class="form-control" placeholder="أعد إدخال كلمة المرور" required>
+                            <div class="error-message" id="register-confirm-password-error">كلمات المرور غير متطابقة</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-type" class="form-label">نوع الحساب</label>
+                            <select id="user-type" class="form-control" required>
+                                <option value="">اختر نوع الحساب</option>
+                                <option value="student">طالب</option>
+                                <option value="teacher">معلم</option>
+                                <option value="parent">ولي أمر</option>
+                            </select>
+                            <div class="error-message" id="user-type-error">يرجى اختيار نوع الحساب</div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="terms" class="form-check-input" required>
+                                <label for="terms" class="form-check-label">أوافق على <a href="#">الشروط والأحكام</a> و <a href="#">سياسة الخصوصية</a></label>
+                            </div>
+                            <div class="error-message" id="terms-error">يجب الموافقة على الشروط والأحكام</div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">إنشاء حساب</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>أو سجل باستخدام</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button class="btn-social facebook">
+                            <i class="fab fa-facebook-f"></i> فيسبوك
+                        </button>
+                        <button class="btn-social google">
+                            <i class="fab fa-google"></i> جوجل
+                        </button>
+                    </div>
+
+                    <div class="auth-footer">
+                        لديك حساب بالفعل؟ <a href="#" class="login-link">سجل دخولك</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تبديل بين علامات التبويب
+            const tabs = document.querySelectorAll('.auth-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const loginLink = document.querySelector('.login-link');
+            const registerLink = document.querySelector('.register-link');
+            
+            function switchTab(tabId) {
+                tabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.getAttribute('data-tab') === tabId);
+                });
+                
+                tabContents.forEach(content => {
+                    content.classList.toggle('active', content.id === tabId + '-tab');
+                });
+            }
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    switchTab(tab.getAttribute('data-tab'));
+                });
+            });
+            
+            if (loginLink) {
+                loginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    switchTab('login');
+                });
+            }
+            
+            if (registerLink) {
+                registerLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    switchTab('register');
+                });
+            }
+            
+            // التحقق من صحة نموذج تسجيل الدخول
+            const loginForm = document.getElementById('login-form');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    const email = document.getElementById('login-email');
+                    const password = document.getElementById('login-password');
+                    const emailError = document.getElementById('login-email-error');
+                    const passwordError = document.getElementById('login-password-error');
+                    
+                    // التحقق من البريد الإلكتروني
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email.value)) {
+                        emailError.style.display = 'block';
+                        email.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        emailError.style.display = 'none';
+                        email.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من كلمة المرور
+                    if (password.value.length < 8) {
+                        passwordError.style.display = 'block';
+                        password.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        passwordError.style.display = 'none';
+                        password.style.borderColor = '#ddd';
+                    }
+                    
+                    if (isValid) {
+                        // إرسال النموذج أو تنفيذ عملية تسجيل الدخول
+                        alert('تم تسجيل الدخول بنجاح!');
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+            
+            // التحقق من صحة نموذج التسجيل
+            const registerForm = document.getElementById('register-form');
+            
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    const name = document.getElementById('register-name');
+                    const email = document.getElementById('register-email');
+                    const password = document.getElementById('register-password');
+                    const confirmPassword = document.getElementById('register-confirm-password');
+                    const userType = document.getElementById('user-type');
+                    const terms = document.getElementById('terms');
+                    
+                    const nameError = document.getElementById('register-name-error');
+                    const emailError = document.getElementById('register-email-error');
+                    const passwordError = document.getElementById('register-password-error');
+                    const confirmPasswordError = document.getElementById('register-confirm-password-error');
+                    const userTypeError = document.getElementById('user-type-error');
+                    const termsError = document.getElementById('terms-error');
+                    
+                    // التحقق من الاسم
+                    if (name.value.trim() === '') {
+                        nameError.style.display = 'block';
+                        name.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        nameError.style.display = 'none';
+                        name.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من البريد الإلكتروني
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email.value)) {
+                        emailError.style.display = 'block';
+                        email.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        emailError.style.display = 'none';
+                        email.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من كلمة المرور
+                    if (password.value.length < 8) {
+                        passwordError.style.display = 'block';
+                        password.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        passwordError.style.display = 'none';
+                        password.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من تطابق كلمات المرور
+                    if (password.value !== confirmPassword.value) {
+                        confirmPasswordError.style.display = 'block';
+                        confirmPassword.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        confirmPasswordError.style.display = 'none';
+                        confirmPassword.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من اختيار نوع الحساب
+                    if (userType.value === '') {
+                        userTypeError.style.display = 'block';
+                        userType.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        userTypeError.style.display = 'none';
+                        userType.style.borderColor = '#ddd';
+                    }
+                    
+                    // التحقق من الموافقة على الشروط
+                    if (!terms.checked) {
+                        termsError.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        termsError.style.display = 'none';
+                    }
+                    
+                    if (isValid) {
+                        // إرسال النموذج أو تنفيذ عملية التسجيل
+                        alert('تم إنشاء الحساب بنجاح!');
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الدرس - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lesson-details-section {
+            padding: 3rem 0;
+        }
+
+        .lesson-header {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-header-content {
+            padding: 2rem;
+        }
+
+        .lesson-title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .lesson-meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-meta-item {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .lesson-meta-item i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .lesson-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-tag {
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-left: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .lesson-actions {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .lesson-action-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-action-btn i {
+            margin-left: 0.75rem;
+        }
+
+        .btn-start-lesson {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .btn-start-lesson:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-download-materials {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .btn-download-materials:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn-add-favorite {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .btn-add-favorite:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn-add-favorite.active {
+            background-color: #ffeaa7;
+            color: #fdcb6e;
+        }
+
+        .lesson-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+
+        .lesson-content-main {
+            flex: 0 0 70%;
+            max-width: 70%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-content-sidebar {
+            flex: 0 0 30%;
+            max-width: 30%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-content-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-content-title {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-content-title i {
+            margin-left: 0.75rem;
+            color: #3498db;
+        }
+
+        .lesson-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .lesson-description p {
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-description ul,
+        .lesson-description ol {
+            padding-right: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-description img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+        }
+
+        .lesson-description h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .lesson-description h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .lesson-video {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .lesson-attachments {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lesson-attachment {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lesson-attachment:last-child {
+            border-bottom: none;
+        }
+
+        .attachment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .attachment-icon i {
+            color: #3498db;
+        }
+
+        .attachment-info {
+            flex-grow: 1;
+        }
+
+        .attachment-name {
+            font-size: 1rem;
+            margin: 0 0 0.25rem;
+            color: #333;
+        }
+
+        .attachment-details {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .attachment-action {
+            flex-shrink: 0;
+        }
+
+        .attachment-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .attachment-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .teacher-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .teacher-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-info {
+            flex-grow: 1;
+        }
+
+        .teacher-name {
+            margin: 0 0 0.25rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .teacher-title {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .teacher-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #3498db;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .teacher-link:hover {
+            text-decoration: underline;
+        }
+
+        .lesson-progress {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-title {
+            font-size: 1rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .progress-percentage {
+            font-size: 1rem;
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-value {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 4px;
+        }
+
+        .related-lessons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .related-lesson {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .related-lesson:last-child {
+            border-bottom: none;
+        }
+
+        .related-lesson-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .related-lesson-icon i {
+            color: #3498db;
+        }
+
+        .related-lesson-info {
+            flex-grow: 1;
+        }
+
+        .related-lesson-name {
+            font-size: 1rem;
+            margin: 0 0 0.25rem;
+            color: #333;
+        }
+
+        .related-lesson-details {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .lesson-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lesson-tab {
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .lesson-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        .lesson-tab:hover {
+            color: #3498db;
+        }
+
+        .lesson-tab-content {
+            display: none;
+        }
+
+        .lesson-tab-content.active {
+            display: block;
+        }
+
+        .lesson-comments {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lesson-comment {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lesson-comment:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comment-meta {
+            flex-grow: 1;
+        }
+
+        .comment-author {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .comment-content {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .comment-actions {
+            display: flex;
+        }
+
+        .comment-action {
+            font-size: 0.8rem;
+            color: #999;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-action:hover {
+            color: #3498db;
+        }
+
+        .comment-replies {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 3rem;
+        }
+
+        .comment-form {
+            margin-top: 2rem;
+        }
+
+        .comment-form-title {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+
+        .comment-form button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .quiz-questions {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quiz-question:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .question-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .question-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .question-option input[type="radio"] {
+            margin-left: 0.75rem;
+        }
+
+        .question-option label {
+            font-size: 1rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .quiz-submit {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .quiz-submit button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-submit button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 992px) {
+            .lesson-content-main {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .lesson-content-sidebar {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lesson-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.5rem;
+            }
+
+            .lesson-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .lesson-meta-item {
+                margin-left: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lesson-actions {
+                flex-direction: column;
+            }
+
+            .lesson-action-btn {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html" class="active">الدروس</a></li>
+                    <li><a href="teachers.html">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>تفاصيل الدرس</h2>
+            <p>استكشف محتوى الدرس والمواد التعليمية المرفقة</p>
+        </div>
+    </section>
+
+    <section class="lesson-details-section">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-header-content">
+                    <h2 class="lesson-title">حل المعادلات من الدرجة الثانية</h2>
+                    
+                    <div class="lesson-meta">
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-user"></i>
+                            <span>د. أحمد محمد</span>
+                        </div>
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>المرحلة الثانوية</span>
+                        </div>
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-book"></i>
+                            <span>الرياضيات</span>
+                        </div>
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>60 دقيقة</span>
+                        </div>
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>تم النشر: 15 سبتمبر 2023</span>
+                        </div>
+                        <div class="lesson-meta-item">
+                            <i class="fas fa-eye"></i>
+                            <span>320 مشاهدة</span>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-tags">
+                        <span class="lesson-tag">الجبر</span>
+                        <span class="lesson-tag">المعادلات</span>
+                        <span class="lesson-tag">الدرجة الثانية</span>
+                        <span class="lesson-tag">الرياضيات</span>
+                        <span class="lesson-tag">الصف الثاني ثانوي</span>
+                    </div>
+                    
+                    <div class="lesson-actions">
+                        <button class="lesson-action-btn btn-start-lesson">
+                            <i class="fas fa-play"></i>
+                            بدء الدرس
+                        </button>
+                        <button class="lesson-action-btn btn-download-materials">
+                            <i class="fas fa-download"></i>
+                            تحميل المواد التعليمية
+                        </button>
+                        <button class="lesson-action-btn btn-add-favorite">
+                            <i class="far fa-heart"></i>
+                            إضافة للمفضلة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="lesson-content-main">
+                    <div class="lesson-tabs">
+                        <div class="lesson-tab active" data-tab="content">محتوى الدرس</div>
+                        <div class="lesson-tab" data-tab="materials">المواد التعليمية</div>
+                        <div class="lesson-tab" data-tab="quiz">اختبار قصير</div>
+                        <div class="lesson-tab" data-tab="comments">التعليقات</div>
+                    </div>
+
+                    <div class="lesson-tab-content active" id="tab-content">
+                        <div class="lesson-content-box">
+                            <div class="lesson-video">
+                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="حل المعادلات من الدرجة الثانية" allowfullscreen></iframe>
+                            </div>
+
+                            <h3 class="lesson-content-title">
+                                <i class="fas fa-book"></i>
+                                محتوى الدرس
+                            </h3>
+                            <div class="lesson-description">
+                                <h3>مقدمة في المعادلات من الدرجة الثانية</h3>
+                                <p>المعادلة من الدرجة الثانية هي معادلة يمكن كتابتها على الصورة: ax² + bx + c = 0، حيث a، b، c أعداد حقيقية و a ≠ 0. في هذا الدرس، سنتعلم كيفية حل هذه المعادلات باستخدام عدة طرق مختلفة.</p>
+                                
+                                <h4>الصيغة العامة للمعادلة من الدرجة الثانية</h4>
+                                <p>الصيغة العامة للمعادلة من الدرجة الثانية هي:</p>
+                                <p style="text-align: center; font-weight: bold;">ax² + bx + c = 0</p>
+                                <p>حيث:</p>
+                                <ul>
+                                    <li>a هو معامل x²، ويجب أن يكون غير صفري (a ≠ 0)</li>
+                                    <li>b هو معامل x</li>
+                                    <li>c هو الحد الثابت</li>
+                                </ul>
+                                
+                                <h3>طرق حل المعادلات من الدرجة الثانية</h3>
+                                
+                                <h4>1. القانون العام (الصيغة العامة)</h4>
+                                <p>يمكننا استخدام القانون العام لحل أي معادلة من الدرجة الثانية:</p>
+                                <p style="text-align: center; font-weight: bold;">x = (-b ± √(b² - 4ac)) / (2a)</p>
+                                <p>حيث:</p>
+                                <ul>
+                                    <li>b² - 4ac يسمى المميز (Δ)</li>
+                                    <li>إذا كان Δ > 0، فإن المعادلة لها حلان حقيقيان مختلفان</li>
+                                    <li>إذا كان Δ = 0، فإن المعادلة لها حل حقيقي واحد (جذر مضاعف)</li>
+                                    <li>إذا كان Δ < 0، فإن المعادلة ليس لها حلول حقيقية (الحلول مركبة)</li>
+                                </ul>
+                                
+                                <h4>2. التحليل إلى العوامل</h4>
+                                <p>إذا كان من الممكن تحليل الطرف الأيسر من المعادلة إلى عوامل، فيمكننا كتابة المعادلة على الصورة:</p>
+                                <p style="text-align: center; font-weight: bold;">(x - r)(x - s) = 0</p>
+                                <p>وبالتالي، فإن الحلول هي x = r و x = s.</p>
+                                
+                                <h4>3. إكمال المربع</h4>
+                                <p>طريقة إكمال المربع هي تقنية مفيدة لتحويل المعادلة من الدرجة الثانية إلى صيغة مربع كامل:</p>
+                                <ol>
+                                    <li>نقسم المعادلة على a (إذا كان a ≠ 1)</li>
+                                    <li>ننقل الحد الثابت إلى الطرف الأيمن</li>
+                                    <li>نضيف (b/2a)² إلى كلا الطرفين</li>
+                                    <li>نعيد كتابة الطرف الأيسر كمربع كامل</li>
+                                    <li>نحل المعادلة</li>
+                                </ol>
+                                
+                                <h3>أمثلة تطبيقية</h3>
+                                
+                                <h4>مثال 1: حل المعادلة x² - 5x + 6 = 0</h4>
+                                <p>باستخدام القانون العام:</p>
+                                <p>a = 1, b = -5, c = 6</p>
+                                <p>Δ = b² - 4ac = (-5)² - 4(1)(6) = 25 - 24 = 1</p>
+                                <p>x = (-b ± √Δ) / (2a) = (5 ± √1) / (2) = (5 ± 1) / 2</p>
+                                <p>x₁ = (5 + 1) / 2 = 3</p>
+                                <p>x₂ = (5 - 1) / 2 = 2</p>
+                                <p>إذن، الحلول هي x = 2 و x = 3.</p>
+                                
+                                <p>باستخدام التحليل إلى العوامل:</p>
+                                <p>x² - 5x + 6 = (x - 2)(x - 3) = 0</p>
+                                <p>إذن، x = 2 أو x = 3.</p>
+                                
+                                <h4>مثال 2: حل المعادلة 2x² + 4x - 6 = 0</h4>
+                                <p>باستخدام القانون العام:</p>
+                                <p>a = 2, b = 4, c = -6</p>
+                                <p>Δ = b² - 4ac = 4² - 4(2)(-6) = 16 + 48 = 64</p>
+                                <p>x = (-b ± √Δ) / (2a) = (-4 ± √64) / (2(2)) = (-4 ± 8) / 4</p>
+                                <p>x₁ = (-4 + 8) / 4 = 4/4 = 1</p>
+                                <p>x₂ = (-4 - 8) / 4 = -12/4 = -3</p>
+                                <p>إذن، الحلول هي x = 1 و x = -3.</p>
+                                
+                                <h4>مثال 3: حل المعادلة 3x² - 6x + 3 = 0</h4>
+                                <p>باستخدام القانون العام:</p>
+                                <p>a = 3, b = -6, c = 3</p>
+                                <p>Δ = b² - 4ac = (-6)² - 4(3)(3) = 36 - 36 = 0</p>
+                                <p>بما أن Δ = 0، فإن المعادلة لها حل واحد (جذر مضاعف):</p>
+                                <p>x = -b / (2a) = 6 / (2(3)) = 6/6 = 1</p>
+                                <p>إذن، الحل هو x = 1 (جذر مضاعف).</p>
+                                
+                                <h3>تطبيقات عملية</h3>
+                                <p>المعادلات من الدرجة الثانية لها العديد من التطبيقات في الحياة اليومية والعلوم المختلفة:</p>
+                                <ul>
+                                    <li>حساب المسافة والسرعة والزمن في الفيزياء</li>
+                                    <li>حساب المساحة والحجم في الهندسة</li>
+                                    <li>تحليل البيانات في الإحصاء</li>
+                                    <li>حل مسائل التكلفة والربح في الاقتصاد</li>
+                                </ul>
+                                
+                                <h3>خلاصة</h3>
+                                <p>في هذا الدرس، تعلمنا كيفية حل المعادلات من الدرجة الثانية باستخدام عدة طرق:</p>
+                                <ol>
+                                    <li>القانون العام (الصيغة العامة)</li>
+                                    <li>التحليل إلى العوامل</li>
+                                    <li>إكمال المربع</li>
+                                </ol>
+                                <p>كما تعرفنا على أهمية المميز (Δ) في تحديد عدد الحلول ونوعها.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tab-content" id="tab-materials">
+                        <div class="lesson-content-box">
+                            <h3 class="lesson-content-title">
+                                <i class="fas fa-file-alt"></i>
+                                المواد التعليمية المرفقة
+                            </h3>
+                            <ul class="lesson-attachments">
+                                <li class="lesson-attachment">
+                                    <div class="attachment-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="attachment-info">
+                                        <h4 class="attachment-name">ملخص الدرس - حل المعادلات من الدرجة الثانية</h4>
+                                        <div class="attachment-details">PDF - 2.5 MB - تم التحديث: 15 سبتمبر 2023</div>
+                                    </div>
+                                    <div class="attachment-action">
+                                        <button class="attachment-btn">تحميل</button>
+                                    </div>
+                                </li>
+
+                                <li class="lesson-attachment">
+                                    <div class="attachment-icon">
+                                        <i class="fas fa-file-powerpoint"></i>
+                                    </div>
+                                    <div class="attachment-info">
+                                        <h4 class="attachment-name">عرض تقديمي - المعادلات من الدرجة الثانية</h4>
+                                        <div class="attachment-details">PPT - 5.8 MB - تم التحديث: 14 سبتمبر 2023</div>
+                                    </div>
+                                    <div class="attachment-action">
+                                        <button class="attachment-btn">تحميل</button>
+                                    </div>
+                                </li>
+
+                                <li class="lesson-attachment">
+                                    <div class="attachment-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <div class="attachment-info">
+                                        <h4 class="attachment-name">تمارين إضافية - حل المعادلات من الدرجة الثانية</h4>
+                                        <div class="attachment-details">PDF - 1.2 MB - تم التحديث: 16 سبتمبر 2023</div>
+                                    </div>
+                                    <div class="attachment-action">
+                                        <button class="attachment-btn">تحميل</button>
+                                    </div>
+                                </li>
+
+                                <li class="lesson-attachment">
+                                    <div class="attachment-icon">
+                                        <i class="fas fa-file-excel"></i>
+                                    </div>
+                                    <div class="attachment-info">
+                                        <h4 class="attachment-name">جدول حلول المعادلات - أمثلة تطبيقية</h4>
+                                        <div class="attachment-details">XLSX - 0.8 MB - تم التحديث: 15 سبتمبر 2023</div>
+                                    </div>
+                                    <div class="attachment-action">
+                                        <button class="attachment-btn">تحميل</button>
+                                    </div>
+                                </li>
+
+                                <li class="lesson-attachment">
+                                    <div class="attachment-icon">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                    <div class="attachment-info">
+                                        <h4 class="attachment-name">رسومات بيانية للمعادلات من الدرجة الثانية</h4>
+                                        <div class="attachment-details">ZIP - 3.5 MB - تم التحديث: 17 سبتمبر 2023</div>
+                                    </div>
+                                    <div class="attachment-action">
+                                        <button class="attachment-btn">تحميل</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tab-content" id="tab-quiz">
+                        <div class="lesson-content-box">
+                            <h3 class="lesson-content-title">
+                                <i class="fas fa-question-circle"></i>
+                                اختبار قصير
+                            </h3>
+                            <p>أكمل الاختبار التالي لتقييم فهمك للدرس. يجب الحصول على درجة 70% على الأقل للنجاح.</p>
+                            
+                            <form class="quiz-form">
+                                <ul class="quiz-questions">
+                                    <li class="quiz-question">
+                                        <h4 class="question-text">1. ما هي الصيغة العامة للمعادلة من الدرجة الثانية؟</h4>
+                                        <ul class="question-options">
+                                            <li class="question-option">
+                                                <input type="radio" name="q1" id="q1a" value="a">
+                                                <label for="q1a">ax + b = 0</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q1" id="q1b" value="b">
+                                                <label for="q1b">ax² + bx + c = 0</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q1" id="q1c" value="c">
+                                                <label for="q1c">ax³ + bx² + cx + d = 0</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q1" id="q1d" value="d">
+                                                <label for="q1d">ax² + b = 0</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="quiz-question">
+                                        <h4 class="question-text">2. ما هو المميز (Δ) في المعادلة من الدرجة الثانية؟</h4>
+                                        <ul class="question-options">
+                                            <li class="question-option">
+                                                <input type="radio" name="q2" id="q2a" value="a">
+                                                <label for="q2a">b² - 4ac</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q2" id="q2b" value="b">
+                                                <label for="q2b">b² + 4ac</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q2" id="q2c" value="c">
+                                                <label for="q2c">b - 4ac</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q2" id="q2d" value="d">
+                                                <label for="q2d">b + 4ac</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="quiz-question">
+                                        <h4 class="question-text">3. إذا كان المميز (Δ) أكبر من الصفر، فإن المعادلة من الدرجة الثانية:</h4>
+                                        <ul class="question-options">
+                                            <li class="question-option">
+                                                <input type="radio" name="q3" id="q3a" value="a">
+                                                <label for="q3a">ليس لها حلول حقيقية</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q3" id="q3b" value="b">
+                                                <label for="q3b">لها حل حقيقي واحد (جذر مضاعف)</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q3" id="q3c" value="c">
+                                                <label for="q3c">لها حلان حقيقيان مختلفان</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q3" id="q3d" value="d">
+                                                <label for="q3d">لها ثلاثة حلول حقيقية</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="quiz-question">
+                                        <h4 class="question-text">4. ما هي حلول المعادلة x² - 7x + 12 = 0؟</h4>
+                                        <ul class="question-options">
+                                            <li class="question-option">
+                                                <input type="radio" name="q4" id="q4a" value="a">
+                                                <label for="q4a">x = 3 و x = 4</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q4" id="q4b" value="b">
+                                                <label for="q4b">x = 3 و x = -4</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q4" id="q4c" value="c">
+                                                <label for="q4c">x = -3 و x = -4</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q4" id="q4d" value="d">
+                                                <label for="q4d">x = 4 و x = 3</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="quiz-question">
+                                        <h4 class="question-text">5. ما هي قيمة المميز (Δ) للمعادلة 2x² - 4x + 2 = 0؟</h4>
+                                        <ul class="question-options">
+                                            <li class="question-option">
+                                                <input type="radio" name="q5" id="q5a" value="a">
+                                                <label for="q5a">0</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q5" id="q5b" value="b">
+                                                <label for="q5b">4</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q5" id="q5c" value="c">
+                                                <label for="q5c">8</label>
+                                            </li>
+                                            <li class="question-option">
+                                                <input type="radio" name="q5" id="q5d" value="d">
+                                                <label for="q5d">16</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <div class="quiz-submit">
+                                    <button type="button">إرسال الإجابات</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tab-content" id="tab-comments">
+                        <div class="lesson-content-box">
+                            <h3 class="lesson-content-title">
+                                <i class="fas fa-comments"></i>
+                                التعليقات والأسئلة
+                            </h3>
+                            
+                            <ul class="lesson-comments">
+                                <li class="lesson-comment">
+                                    <div class="comment-header">
+                                        <div class="comment-avatar">
+                                            <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                        </div>
+                                        <div class="comment-meta">
+                                            <h4 class="comment-author">سارة أحمد</h4>
+                                            <div class="comment-date">منذ 3 أيام</div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        شكراً جزيلاً على هذا الدرس الرائع! لقد استفدت كثيراً من الشرح والأمثلة التطبيقية. لدي سؤال بخصوص المثال الثالث: هل يمكن حله باستخدام طريقة إكمال المربع أيضاً؟
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">رد</span>
+                                        <span class="comment-action">إعجاب (5)</span>
+                                    </div>
+                                    
+                                    <ul class="comment-replies">
+                                        <li class="lesson-comment">
+                                            <div class="comment-header">
+                                                <div class="comment-avatar">
+                                                    <img src="https://via.placeholder.com/40x40" alt="معلم">
+                                                </div>
+                                                <div class="comment-meta">
+                                                    <h4 class="comment-author">د. أحمد محمد</h4>
+                                                    <div class="comment-date">منذ يومين</div>
+                                                </div>
+                                            </div>
+                                            <div class="comment-content">
+                                                أهلاً سارة، نعم يمكن حل المثال الثالث باستخدام طريقة إكمال المربع. سنبدأ بقسمة المعادلة على 3 لنحصل على: x² - 2x + 1 = 0. ثم نعيد ترتيبها: x² - 2x = -1. لإكمال المربع، نضيف (b/2)² = (-2/2)² = 1 إلى كلا الطرفين: x² - 2x + 1 = -1 + 1. وهذا يعطينا: (x - 1)² = 0، ومنه x = 1. وهو نفس الحل الذي حصلنا عليه باستخدام القانون العام.
+                                            </div>
+                                            <div class="comment-actions">
+                                                <span class="comment-action">رد</span>
+                                                <span class="comment-action">إعجاب (3)</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="lesson-comment">
+                                    <div class="comment-header">
+                                        <div class="comment-avatar">
+                                            <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                        </div>
+                                        <div class="comment-meta">
+                                            <h4 class="comment-author">محمد علي</h4>
+                                            <div class="comment-date">منذ أسبوع</div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        هل يمكن تطبيق هذه الطرق على معادلات من الدرجة الثانية تحتوي على كسور؟ مثلاً: (x²/2) + 2x - 3 = 0
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">رد</span>
+                                        <span class="comment-action">إعجاب (2)</span>
+                                    </div>
+                                    
+                                    <ul class="comment-replies">
+                                        <li class="lesson-comment">
+                                            <div class="comment-header">
+                                                <div class="comment-avatar">
+                                                    <img src="https://via.placeholder.com/40x40" alt="معلم">
+                                                </div>
+                                                <div class="comment-meta">
+                                                    <h4 class="comment-author">د. أحمد محمد</h4>
+                                                    <div class="comment-date">منذ 6 أيام</div>
+                                                </div>
+                                            </div>
+                                            <div class="comment-content">
+                                                نعم محمد، يمكن تطبيق نفس الطرق على معادلات تحتوي على كسور. في المثال الذي ذكرته، يمكننا ضرب المعادلة في 2 للتخلص من الكسر: x² + 4x - 6 = 0. ثم نستخدم أي من الطرق التي تعلمناها لحل هذه المعادلة. سأضيف مثالاً مفصلاً عن هذا الموضوع في المواد التعليمية الإضافية قريباً.
+                                            </div>
+                                            <div class="comment-actions">
+                                                <span class="comment-action">رد</span>
+                                                <span class="comment-action">إعجاب (4)</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="lesson-comment">
+                                    <div class="comment-header">
+                                        <div class="comment-avatar">
+                                            <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                        </div>
+                                        <div class="comment-meta">
+                                            <h4 class="comment-author">خالد محمود</h4>
+                                            <div class="comment-date">منذ 4 أيام</div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        درس ممتاز وشرح واضح جداً. هل سيكون هناك درس مكمل عن تطبيقات المعادلات من الدرجة الثانية في الفيزياء؟
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">رد</span>
+                                        <span class="comment-action">إعجاب (1)</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="comment-form">
+                                <h4 class="comment-form-title">أضف تعليقاً أو سؤالاً</h4>
+                                <textarea placeholder="اكتب تعليقك أو سؤالك هنا..."></textarea>
+                                <button type="button">إرسال</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content-sidebar">
+                    <div class="lesson-content-box">
+                        <h3 class="lesson-content-title">
+                            <i class="fas fa-user"></i>
+                            معلم الدرس
+                        </h3>
+                        <div class="teacher-card">
+                            <div class="teacher-avatar">
+                                <img src="https://via.placeholder.com/60x60" alt="د. أحمد محمد">
+                            </div>
+                            <div class="teacher-info">
+                                <h4 class="teacher-name">د. أحمد محمد</h4>
+                                <p class="teacher-title">أستاذ الرياضيات - المرحلة الثانوية</p>
+                                <a href="teacher-profile.html" class="teacher-link">عرض الملف الشخصي</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-content-box">
+                        <h3 class="lesson-content-title">
+                            <i class="fas fa-chart-line"></i>
+                            تقدمك في الدرس
+                        </h3>
+                        <div class="lesson-progress">
+                            <div class="progress-header">
+                                <h4 class="progress-title">إكمال المحتوى</h4>
+                                <span class="progress-percentage">65%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="lesson-progress">
+                            <div class="progress-header">
+                                <h4 class="progress-title">الاختبار القصير</h4>
+                                <span class="progress-percentage">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="lesson-progress">
+                            <div class="progress-header">
+                                <h4 class="progress-title">التقدم الكلي</h4>
+                                <span class="progress-percentage">40%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-content-box">
+                        <h3 class="lesson-content-title">
+                            <i class="fas fa-book"></i>
+                            دروس ذات صلة
+                        </h3>
+                        <ul class="related-lessons">
+                            <li class="related-lesson">
+                                <div class="related-lesson-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <div class="related-lesson-info">
+                                    <h4 class="related-lesson-name">أساسيات الجبر للصف الثاني ثانوي</h4>
+                                    <div class="related-lesson-details">45 دقيقة - 250 طالب</div>
+                                </div>
+                            </li>
+
+                            <li class="related-lesson">
+                                <div class="related-lesson-icon">
+                                    <i class="fas fa-square-root-alt"></i>
+                                </div>
+                                <div class="related-lesson-info">
+                                    <h4 class="related-lesson-name">المعادلات من الدرجة الأولى</h4>
+                                    <div class="related-lesson-details">50 دقيقة - 280 طالب</div>
+                                </div>
+                            </li>
+
+                            <li class="related-lesson">
+                                <div class="related-lesson-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="related-lesson-info">
+                                    <h4 class="related-lesson-name">رسم دوال المعادلات من الدرجة الثانية</h4>
+                                    <div class="related-lesson-details">55 دقيقة - 200 طالب</div>
+                                </div>
+                            </li>
+
+                            <li class="related-lesson">
+                                <div class="related-lesson-icon">
+                                    <i class="fas fa-infinity"></i>
+                                </div>
+                                <div class="related-lesson-info">
+                                    <h4 class="related-lesson-name">تطبيقات المعادلات من الدرجة الثانية</h4>
+                                    <div class="related-lesson-details">60 دقيقة - 180 طالب</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>المتألق في التعليم</h2>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>تواصل معنا</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> الجزائر العاصمة، الجزائر</p>
+                    <p><i class="fas fa-phone"></i> +213 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> info@motalk-edu.dz</p>
+                </div>
+                <div class="footer-social">
+                    <h3>تابعنا</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 - المتألق في التعليم</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // تبديل التبويبات
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.lesson-tab');
+            const tabContents = document.querySelectorAll('.lesson-tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // إزالة الفئة النشطة من جميع التبويبات
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // إضافة الفئة النشطة للتبويب المحدد
+                    tab.classList.add('active');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+            
+            // زر إضافة للمفضلة
+            const favoriteBtn = document.querySelector('.btn-add-favorite');
+            favoriteBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.innerHTML = '<i class="fas fa-heart"></i> تمت الإضافة للمفضلة';
+                } else {
+                    this.innerHTML = '<i class="far fa-heart"></i> إضافة للمفضلة';
+                }
+            });
+            
+            // زر بدء الدرس
+            const startLessonBtn = document.querySelector('.btn-start-lesson');
+            startLessonBtn.addEventListener('click', function() {
+                // التمرير إلى قسم محتوى الدرس
+                const contentTab = document.querySelector('[data-tab="content"]');
+                contentTab.click();
+                document.querySelector('.lesson-video').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // زر تحميل المواد التعليمية
+            const downloadBtn = document.querySelector('.btn-download-materials');
+            downloadBtn.addEventListener('click', function() {
+                // التبديل إلى تبويب المواد التعليمية
+                const materialsTab = document.querySelector('[data-tab="materials"]');
+                materialsTab.click();
+            });
+            
+            // أزرار تحميل المرفقات
+            const attachmentBtns = document.querySelectorAll('.attachment-btn');
+            attachmentBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const attachmentName = this.closest('.lesson-attachment').querySelector('.attachment-name').textContent;
+                    alert(`جاري تحميل: ${attachmentName}`);
+                });
+            });
+            
+            // زر إرسال الاختبار
+            const quizSubmitBtn = document.querySelector('.quiz-submit button');
+            if (quizSubmitBtn) {
+                quizSubmitBtn.addEventListener('click', function() {
+                    // التحقق من الإجابات
+                    const correctAnswers = {
+                        q1: 'b',
+                        q2: 'a',
+                        q3: 'c',
+                        q4: 'd',
+                        q5: 'a'
+                    };
+                    
+                    let score = 0;
+                    let total = Object.keys(correctAnswers).length;
+                    
+                    for (const [question, answer] of Object.entries(correctAnswers)) {
+                        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                        if (selectedOption && selectedOption.value === answer) {
+                            score++;
+                        }
+                    }
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    alert(`نتيجتك: ${score} من ${total} (${percentage}%)\n${percentage >= 70 ? 'تهانينا! لقد اجتزت الاختبار بنجاح.' : 'حاول مرة أخرى للحصول على درجة أعلى.'}`);
+                    
+                    // تحديث شريط التقدم
+                    const progressBar = document.querySelector('.lesson-progress:nth-child(2) .progress-value');
+                    const progressPercentage = document.querySelector('.lesson-progress:nth-child(2) .progress-percentage');
+                    progressBar.style.width = `${percentage}%`;
+                    progressPercentage.textContent = `${percentage}%`;
+                    
+                    // تحديث التقدم الكلي
+                    const totalProgressBar = document.querySelector('.lesson-progress:nth-child(3) .progress-value');
+                    const totalProgressPercentage = document.querySelector('.lesson-progress:nth-child(3) .progress-percentage');
+                    const contentProgress = 65; // من المفترض أن هذا هو التقدم الحالي في المحتوى
+                    const totalProgress = Math.round((contentProgress + percentage) / 2);
+                    totalProgressBar.style.width = `${totalProgress}%`;
+                    totalProgressPercentage.textContent = `${totalProgress}%`;
+                });
+            }
+            
+            // زر إرسال التعليق
+            const commentSubmitBtn = document.querySelector('.comment-form button');
+            if (commentSubmitBtn) {
+                commentSubmitBtn.addEventListener('click', function() {
+                    const commentText = document.querySelector('.comment-form textarea').value;
+                    if (commentText.trim() === '') {
+                        alert('الرجاء كتابة تعليق قبل الإرسال');
+                        return;
+                    }
+                    
+                    alert('تم إرسال تعليقك بنجاح وسيتم مراجعته قريباً');
+                    document.querySelector('.comment-form textarea').value = '';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

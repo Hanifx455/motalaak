@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطأ في الخادم | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة الخطأ 500 */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            min-height: 60vh;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .error-image {
+            max-width: 400px;
+            margin: 20px 0;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .error-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .error-btn-primary {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+        }
+
+        .error-btn-secondary {
+            background-color: transparent;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        .error-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-btn-primary:hover {
+            background-color: #c0392b;
+        }
+
+        .error-btn-secondary:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        .error-details {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            max-width: 600px;
+            text-align: right;
+        }
+
+        .error-details h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .error-details ul {
+            list-style-type: disc;
+            padding-right: 20px;
+            color: #666;
+        }
+
+        .error-details li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 100px;
+            }
+
+            .error-title {
+                font-size: 26px;
+            }
+
+            .error-message {
+                font-size: 16px;
+            }
+
+            .error-image {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            .error-title {
+                font-size: 22px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .error-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <span>المتألق في التعليم</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="teachers.html">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="error-container">
+            <h1 class="error-code">500</h1>
+            <h2 class="error-title">عذراً، حدث خطأ في الخادم!</h2>
+            <p class="error-message">واجهنا مشكلة أثناء معالجة طلبك. فريق الدعم الفني لدينا على علم بالمشكلة ويعمل على حلها في أسرع وقت ممكن.</p>
+            <img src="images/500-illustration.svg" alt="خطأ في الخادم" class="error-image">
+            
+            <div class="error-actions">
+                <a href="index.html" class="error-btn error-btn-primary">
+                    <i class="fas fa-home"></i>
+                    العودة للرئيسية
+                </a>
+                <a href="javascript:window.location.reload();" class="error-btn error-btn-secondary">
+                    <i class="fas fa-sync-alt"></i>
+                    إعادة المحاولة
+                </a>
+                <a href="contact.html" class="error-btn error-btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    اتصل بالدعم الفني
+                </a>
+            </div>
+            
+            <div class="error-details">
+                <h3>ماذا يمكنك أن تفعل؟</h3>
+                <ul>
+                    <li>انتظر قليلاً ثم حاول تحديث الصفحة</li>
+                    <li>تأكد من اتصالك بالإنترنت</li>
+                    <li>عد إلى الصفحة السابقة وحاول مرة أخرى</li>
+                    <li>تواصل مع فريق الدعم الفني إذا استمرت المشكلة</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>معلومات الاتصال</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع ديدوش مراد، الجزائر العاصمة</li>
+                        <li><i class="fas fa-phone"></i> +213 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@motaalik.dz</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>تابعنا على</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 - المتألق في التعليم</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تبديل القائمة في الهاتف المحمول
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (mobileMenuToggle && mainNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                });
+            }
+            
+            // تسجيل الخطأ في وحدة التحكم للمطورين
+            console.error('خطأ في الخادم: يرجى التحقق من سجلات الخادم للحصول على مزيد من المعلومات');
+        });
+    </script>
+</body>
+</html>

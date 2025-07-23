@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشروط والأحكام | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة الشروط والأحكام */
+        .terms-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/terms-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .terms-hero p {
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-section h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .terms-section h3 {
+            font-size: 20px;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+
+        .terms-section p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .terms-section ul, .terms-section ol {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            padding-right: 20px;
+        }
+
+        .terms-section li {
+            margin-bottom: 10px;
+        }
+
+        .terms-section strong {
+            color: #333;
+        }
+
+        .terms-section a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .terms-section a:hover {
+            text-decoration: underline;
+        }
+
+        .terms-nav {
+            position: sticky;
+            top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .terms-nav h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .terms-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .terms-nav li {
+            margin-bottom: 10px;
+        }
+
+        .terms-nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .terms-nav a:hover {
+            color: #3498db;
+            padding-right: 5px;
+        }
+
+        .terms-nav a.active {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .terms-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .terms-footer p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .terms-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .terms-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .terms-date {
+            font-style: italic;
+            color: #999;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .terms-highlight {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-right: 3px solid #3498db;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .terms-hero {
+                padding: 60px 0;
+            }
+
+            .terms-hero h1 {
+                font-size: 28px;
+            }
+
+            .terms-section h2 {
+                font-size: 22px;
+            }
+
+            .terms-section h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- القائمة العلوية -->
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="المتألق في التعليم" class="logo">
+                </a>
+            </div>
+            <nav class="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li class="nav-item"><a href="education-levels.html" class="nav-link">المراحل التعليمية</a></li>
+                    <li class="nav-item"><a href="lessons.html" class="nav-link">الدروس</a></li>
+                    <li class="nav-item"><a href="teachers.html" class="nav-link">المعلمون</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">المدونة</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">من نحن</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-actions">
+                <a href="login.html" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+                <button class="navbar-toggler">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم البداية -->
+    <section class="terms-hero">
+        <div class="container">
+            <h1>الشروط والأحكام</h1>
+            <p>يرجى قراءة هذه الشروط والأحكام بعناية قبل استخدام منصة المتألق في التعليم</p>
+        </div>
+    </section>
+
+    <!-- محتوى الشروط والأحكام -->
+    <div class="container terms-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="terms-nav">
+                    <h3>جدول المحتويات</h3>
+                    <ul>
+                        <li><a href="#introduction" class="active">مقدمة</a></li>
+                        <li><a href="#definitions">التعريفات</a></li>
+                        <li><a href="#account">حسابك</a></li>
+                        <li><a href="#content">المحتوى التعليمي</a></li>
+                        <li><a href="#subscription">الاشتراكات والمدفوعات</a></li>
+                        <li><a href="#intellectual-property">الملكية الفكرية</a></li>
+                        <li><a href="#prohibited-activities">الأنشطة المحظورة</a></li>
+                        <li><a href="#termination">إنهاء الخدمة</a></li>
+                        <li><a href="#liability">حدود المسؤولية</a></li>
+                        <li><a href="#privacy">سياسة الخصوصية</a></li>
+                        <li><a href="#changes">التغييرات في الشروط</a></li>
+                        <li><a href="#contact-us">اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="terms-section" id="introduction">
+                    <h2>1. مقدمة</h2>
+                    <p class="terms-date">آخر تحديث: 15 يناير 2023</p>
+                    <p>مرحبًا بك في منصة "المتألق في التعليم" ("المنصة" أو "الموقع"). تُدار هذه المنصة بواسطة شركة المتألق للتعليم الإلكتروني ("نحن" أو "لنا" أو "الشركة").</p>
+                    <p>باستخدامك لمنصتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام ("الشروط"). إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام منصتنا.</p>
+                    <p>تنطبق هذه الشروط على جميع زوار ومستخدمي ومشتركي المنصة. من خلال الوصول إلى منصتنا أو استخدامها، فإنك توافق على الالتزام بهذه الشروط. إذا كنت تستخدم المنصة نيابة عن مؤسسة (مثل صاحب عملك)، فإنك توافق على هذه الشروط نيابة عن تلك المؤسسة وتقر بأن لديك السلطة للقيام بذلك.</p>
+                </div>
+
+                <div class="terms-section" id="definitions">
+                    <h2>2. التعريفات</h2>
+                    <p>في هذه الشروط والأحكام، تحمل المصطلحات التالية المعاني المبينة أدناه:</p>
+                    <ul>
+                        <li><strong>"المنصة"</strong>: تشير إلى موقع "المتألق في التعليم" الإلكتروني وتطبيقاته وخدماته.</li>
+                        <li><strong>"المستخدم"</strong>: يشير إلى أي شخص يزور المنصة أو يستخدمها، سواء كان مسجلاً أم لا.</li>
+                        <li><strong>"الحساب"</strong>: يشير إلى حساب المستخدم المسجل في المنصة.</li>
+                        <li><strong>"المحتوى التعليمي"</strong>: يشير إلى جميع المواد التعليمية المتاحة على المنصة، بما في ذلك الدروس والاختبارات والتمارين والفيديوهات والمستندات.</li>
+                        <li><strong>"الاشتراك"</strong>: يشير إلى خطة الاشتراك المدفوعة التي تتيح للمستخدم الوصول إلى محتوى تعليمي إضافي.</li>
+                        <li><strong>"المعلم"</strong>: يشير إلى أي شخص يقدم محتوى تعليمي على المنصة.</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section" id="account">
+                    <h2>3. حسابك</h2>
+                    <h3>3.1 إنشاء الحساب</h3>
+                    <p>لاستخدام بعض ميزات منصتنا، قد تحتاج إلى إنشاء حساب. عند إنشاء حساب، يجب عليك تقديم معلومات دقيقة وكاملة. أنت مسؤول عن الحفاظ على سرية كلمة المرور الخاصة بك وعن جميع الأنشطة التي تحدث تحت حسابك.</p>
+                    <p>يجب أن تكون في سن 13 عامًا على الأقل لإنشاء حساب. إذا كنت أقل من 18 عامًا، يجب أن تحصل على موافقة والديك أو الوصي القانوني عليك لإنشاء حساب واستخدام المنصة.</p>
+                    
+                    <h3>3.2 أمان الحساب</h3>
+                    <p>أنت مسؤول عن الحفاظ على سرية بيانات اعتماد حسابك وعن جميع الأنشطة التي تحدث تحت حسابك. يجب عليك إخطارنا فورًا بأي استخدام غير مصرح به لحسابك أو أي خرق آخر للأمان.</p>
+                    <p>نحتفظ بالحق في تعطيل أي اسم مستخدم أو كلمة مرور أو معرف آخر، سواء تم اختياره بواسطتك أو تم توفيره من قبلنا، في أي وقت، إذا رأينا، وفقًا لتقديرنا المعقول، أنك انتهكت أي حكم من أحكام هذه الشروط.</p>
+                    
+                    <h3>3.3 معلومات الحساب</h3>
+                    <p>أنت توافق على تقديم معلومات دقيقة وحديثة وكاملة عند إنشاء حسابك وتحديثها باستمرار. إذا كانت المعلومات التي قدمتها غير دقيقة أو غير مكتملة أو غير محدثة، فقد نقوم بتعليق أو إنهاء حسابك وحرمانك من استخدام المنصة.</p>
+                </div>
+
+                <div class="terms-section" id="content">
+                    <h2>4. المحتوى التعليمي</h2>
+                    <h3>4.1 استخدام المحتوى</h3>
+                    <p>يتم توفير المحتوى التعليمي على منصتنا للاستخدام الشخصي والتعليمي غير التجاري فقط. لا يجوز لك نسخ أو إعادة إنتاج أو توزيع أو بيع أو نقل أو تعديل أو عرض أو أداء أو إنشاء أعمال مشتقة من المحتوى التعليمي دون إذن كتابي صريح منا.</p>
+                    
+                    <h3>4.2 دقة المحتوى</h3>
+                    <p>نبذل قصارى جهدنا لضمان دقة وحداثة المحتوى التعليمي على منصتنا. ومع ذلك، لا نضمن اكتمال أو موثوقية أو دقة أو ملاءمة المحتوى لأي غرض معين. أي اعتماد على المحتوى التعليمي يكون على مسؤوليتك الخاصة.</p>
+                    
+                    <h3>4.3 التغييرات في المحتوى</h3>
+                    <p>نحتفظ بالحق في تغيير أو تحديث أو إزالة أي محتوى تعليمي على منصتنا في أي وقت ودون إشعار مسبق.</p>
+                    
+                    <div class="terms-highlight">
+                        <p><strong>ملاحظة مهمة:</strong> المحتوى التعليمي المقدم على منصتنا مخصص للأغراض التعليمية فقط ولا يمكن اعتباره بديلاً عن المشورة المهنية أو التعليم الرسمي. يجب على المستخدمين دائمًا الرجوع إلى المناهج الدراسية الرسمية والمصادر المعتمدة.</p>
+                    </div>
+                </div>
+
+                <div class="terms-section" id="subscription">
+                    <h2>5. الاشتراكات والمدفوعات</h2>
+                    <h3>5.1 خطط الاشتراك</h3>
+                    <p>نقدم مجموعة متنوعة من خطط الاشتراك للوصول إلى المحتوى التعليمي المتميز على منصتنا. تفاصيل كل خطة اشتراك، بما في ذلك الأسعار والميزات، متاحة على صفحة الاشتراكات في منصتنا.</p>
+                    
+                    <h3>5.2 المدفوعات</h3>
+                    <p>جميع المدفوعات تتم بالدينار الجزائري (DZD) ما لم يُذكر خلاف ذلك. عند الاشتراك في خطة مدفوعة، فإنك تفوضنا بتحصيل الرسوم المطبقة باستخدام طريقة الدفع التي اخترتها. جميع المدفوعات غير قابلة للاسترداد إلا في الحالات المنصوص عليها صراحة في هذه الشروط أو وفقًا للقانون المعمول به.</p>
+                    
+                    <h3>5.3 التجديد التلقائي</h3>
+                    <p>ما لم تقم بإلغاء اشتراكك قبل نهاية فترة الاشتراك الحالية، سيتم تجديد اشتراكك تلقائيًا وسيتم تحصيل رسوم الاشتراك باستخدام طريقة الدفع المسجلة لديك. يمكنك إلغاء التجديد التلقائي في أي وقت من خلال إعدادات حسابك.</p>
+                    
+                    <h3>5.4 تغييرات الأسعار</h3>
+                    <p>نحتفظ بالحق في تغيير أسعار الاشتراك في أي وقت. سنقوم بإخطارك بأي تغييرات في الأسعار قبل تطبيقها على اشتراكك. استمرارك في استخدام المنصة بعد تغيير الأسعار يعتبر موافقة على الأسعار الجديدة.</p>
+                </div>
+
+                <div class="terms-section" id="intellectual-property">
+                    <h2>6. الملكية الفكرية</h2>
+                    <h3>6.1 ملكيتنا</h3>
+                    <p>المنصة والمحتوى التعليمي والميزات والوظائف (بما في ذلك على سبيل المثال لا الحصر، جميع المعلومات والبرامج والنصوص والعروض والصور والفيديو والصوت، وتصميم الموقع واختياره وترتيبه) هي مملوكة للشركة أو مرخصيها أو موردي المحتوى الآخرين ومحمية بموجب قوانين حقوق النشر والعلامات التجارية وبراءات الاختراع وغيرها من قوانين الملكية الفكرية أو حقوق الملكية.</p>
+                    
+                    <h3>6.2 ترخيص الاستخدام</h3>
+                    <p>نمنحك ترخيصًا محدودًا وغير حصري وغير قابل للتحويل لاستخدام المنصة والوصول إلى المحتوى التعليمي للأغراض التعليمية الشخصية غير التجارية فقط. لا يجوز لك نسخ أو تعديل أو توزيع أو بيع أو تأجير أو ترخيص من الباطن أو نقل أو الكشف عن أو إتاحة المحتوى التعليمي بأي طريقة أخرى.</p>
+                    
+                    <h3>6.3 العلامات التجارية</h3>
+                    <p>اسم "المتألق في التعليم" والشعار وجميع الأسماء والشعارات والتصاميم والشعارات ذات الصلة هي علامات تجارية للشركة. لا يجوز لك استخدام هذه العلامات التجارية دون إذن كتابي مسبق من الشركة.</p>
+                </div>
+
+                <div class="terms-section" id="prohibited-activities">
+                    <h2>7. الأنشطة المحظورة</h2>
+                    <p>عند استخدام منصتنا، توافق على عدم:</p>
+                    <ul>
+                        <li>انتهاك أي قوانين أو لوائح معمول بها.</li>
+                        <li>استخدام المنصة لأي غرض غير قانوني أو غير مصرح به.</li>
+                        <li>نشر أو إرسال أي محتوى غير قانوني أو ضار أو تهديدي أو مسيء أو مضايق أو تشهيري أو فاحش أو بذيء.</li>
+                        <li>انتحال شخصية أي فرد أو كيان، أو تحريف انتمائك إلى أي فرد أو كيان.</li>
+                        <li>المشاركة في أي نشاط يتداخل مع أو يعطل المنصة (مثل هجمات الحرمان من الخدمة).</li>
+                        <li>محاولة الوصول إلى أنظمتنا أو شبكاتنا بطرق غير مصرح بها.</li>
+                        <li>جمع أو حصاد أي معلومات شخصية من المنصة.</li>
+                        <li>استخدام المنصة لإرسال رسائل غير مرغوب فيها أو بريد عشوائي.</li>
+                        <li>استخدام أي روبوت أو عنكبوت أو أي جهاز آلي آخر أو عملية يدوية للمراقبة أو النسخ أي محتوى من المنصة.</li>
+                        <li>نقل أي فيروسات أو أحصنة طروادة أو ديدان أو قنابل منطقية أو أي مواد أخرى ضارة أو مدمرة تكنولوجيًا.</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section" id="termination">
+                    <h2>8. إنهاء الخدمة</h2>
+                    <h3>8.1 إنهاء من قبلك</h3>
+                    <p>يمكنك إنهاء حسابك في أي وقت من خلال اتباع تعليمات "حذف الحساب" في إعدادات حسابك أو عن طريق الاتصال بنا. عند إنهاء حسابك، ستفقد الوصول إلى جميع المحتوى التعليمي المدفوع.</p>
+                    
+                    <h3>8.2 إنهاء من قبلنا</h3>
+                    <p>نحتفظ بالحق في تعليق أو إنهاء حسابك وحرمانك من استخدام المنصة في أي وقت ولأي سبب، بما في ذلك، على سبيل المثال لا الحصر، إذا اعتقدنا أنك انتهكت هذه الشروط. عند الإنهاء، ستفقد الوصول إلى المنصة والمحتوى التعليمي.</p>
+                    
+                    <h3>8.3 تأثير الإنهاء</h3>
+                    <p>عند إنهاء حسابك، ستظل أحكام هذه الشروط التي يجب أن تستمر بطبيعتها بعد الإنهاء سارية، بما في ذلك، على سبيل المثال لا الحصر، أحكام الملكية وإخلاء المسؤولية عن الضمانات وتحديد المسؤولية.</p>
+                </div>
+
+                <div class="terms-section" id="liability">
+                    <h2>9. حدود المسؤولية</h2>
+                    <h3>9.1 إخلاء المسؤولية</h3>
+                    <p>يتم توفير المنصة والمحتوى التعليمي "كما هي" و"كما هو متاح" دون أي ضمانات من أي نوع، سواء كانت صريحة أو ضمنية. لا نقدم أي ضمانات بأن المنصة ستكون غير منقطعة أو خالية من الأخطاء أو آمنة، أو أن المنصة ستلبي متطلباتك أو أن أي أخطاء في المنصة سيتم تصحيحها.</p>
+                    
+                    <h3>9.2 تحديد المسؤولية</h3>
+                    <p>إلى أقصى حد يسمح به القانون، لن تكون الشركة أو مديروها أو موظفوها أو وكلاؤها مسؤولين عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو عقابية، بما في ذلك خسارة الأرباح أو البيانات أو الاستخدام أو السمعة، الناشئة عن أو المتعلقة باستخدامك للمنصة أو عدم قدرتك على استخدامها.</p>
+                    
+                    <h3>9.3 الاستثناءات</h3>
+                    <p>بعض الولايات القضائية لا تسمح باستبعاد الضمانات الضمنية أو تحديد المسؤولية عن الأضرار العرضية أو التبعية، لذلك قد لا تنطبق بعض القيود المذكورة أعلاه عليك.</p>
+                </div>
+
+                <div class="terms-section" id="privacy">
+                    <h2>10. سياسة الخصوصية</h2>
+                    <p>نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. يرجى مراجعة <a href="privacy.html">سياسة الخصوصية</a> الخاصة بنا للحصول على معلومات حول كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية.</p>
+                </div>
+
+                <div class="terms-section" id="changes">
+                    <h2>11. التغييرات في الشروط</h2>
+                    <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سنقوم بإخطارك بأي تغييرات جوهرية عن طريق نشر الشروط المحدثة على هذه الصفحة وتحديث تاريخ "آخر تحديث" في أعلى هذه الشروط.</p>
+                    <p>استمرارك في استخدام المنصة بعد نشر التغييرات يعني موافقتك على الشروط المعدلة. إذا كنت لا توافق على الشروط الجديدة، يجب عليك التوقف عن استخدام المنصة.</p>
+                </div>
+
+                <div class="terms-section" id="contact-us">
+                    <h2>12. اتصل بنا</h2>
+                    <p>إذا كان لديك أي أسئلة أو استفسارات حول هذه الشروط والأحكام، يرجى الاتصال بنا على:</p>
+                    <ul>
+                        <li>البريد الإلكتروني: info@motaalik.dz</li>
+                        <li>الهاتف: 0123456789</li>
+                        <li>العنوان: حي النخيل، الجزائر العاصمة، الجزائر</li>
+                    </ul>
+                </div>
+
+                <div class="terms-footer">
+                    <p>بالنقر على "أوافق" أو باستخدام منصتنا، فإنك تقر بأنك قد قرأت وفهمت ووافقت على الالتزام بهذه الشروط والأحكام.</p>
+                    <p>© 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-white.svg" alt="المتألق في التعليم" class="logo">
+                    <p>منصة تعليمية رائدة توفر محتوى تعليمي عالي الجودة لجميع المراحل التعليمية في الجزائر.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>اتصل بنا</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> العنوان: حي النخيل، الجزائر العاصمة، الجزائر</p>
+                    <p><i class="fas fa-phone"></i> الهاتف: 0123456789</p>
+                    <p><i class="fas fa-envelope"></i> البريد الإلكتروني: info@motaalik.dz</p>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>النشرة الإخبارية</h3>
+                    <p>اشترك في نشرتنا الإخبارية للحصول على آخر الأخبار والعروض</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                        <button type="submit">اشتراك</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    <p>جميع الحقوق محفوظة &copy; 2023 المتألق في التعليم</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تفعيل القائمة المتجاوبة
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarMenu = document.querySelector('.navbar-menu');
+            
+            if (navbarToggler && navbarMenu) {
+                navbarToggler.addEventListener('click', function() {
+                    navbarMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+            
+            // تفعيل التمرير السلس للروابط
+            const navLinks = document.querySelectorAll('.terms-nav a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // إزالة الفئة النشطة من جميع الروابط
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // إضافة الفئة النشطة للرابط المحدد
+                    this.classList.add('active');
+                    
+                    // التمرير إلى القسم المستهدف
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تحديث الرابط النشط عند التمرير
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                
+                document.querySelectorAll('.terms-section').forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

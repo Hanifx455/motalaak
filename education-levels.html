@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المراحل التعليمية - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .education-levels-section {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .levels-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .level-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .level-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-level .level-header {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .middle-level .level-header {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .secondary-level .level-header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .university-level .level-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+
+        .level-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-icon {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .level-description {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .level-subjects {
+            padding: 1.5rem;
+        }
+
+        .level-subjects h4 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .subjects-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .subjects-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .subjects-list li:last-child {
+            border-bottom: none;
+        }
+
+        .subjects-list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            margin-left: 0.5rem;
+            color: #4CAF50;
+        }
+
+        .level-footer {
+            padding: 1.5rem;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+
+        .btn-explore {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .primary-level .btn-explore {
+            background-color: #a1c4fd;
+            color: #fff;
+        }
+
+        .middle-level .btn-explore {
+            background-color: #84fab0;
+            color: #fff;
+        }
+
+        .secondary-level .btn-explore {
+            background-color: #fa709a;
+            color: #fff;
+        }
+
+        .university-level .btn-explore {
+            background-color: #6a11cb;
+            color: #fff;
+        }
+
+        .primary-level .btn-explore:hover {
+            background-color: #8fb8f8;
+        }
+
+        .middle-level .btn-explore:hover {
+            background-color: #6de89e;
+        }
+
+        .secondary-level .btn-explore:hover {
+            background-color: #f55c8d;
+        }
+
+        .university-level .btn-explore:hover {
+            background-color: #5910b0;
+        }
+
+        .curriculum-section {
+            padding: 3rem 0;
+        }
+
+        .curriculum-tabs {
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background-color: #3498db;
+            color: #fff;
+            border-color: #3498db;
+        }
+
+        .tab-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .subject-accordion {
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .subject-header {
+            padding: 1rem;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subject-header h4 {
+            margin: 0;
+        }
+
+        .subject-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .subject-header.active::after {
+            content: '-';
+        }
+
+        .subject-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .subject-content.show {
+            padding: 1rem;
+            max-height: 500px;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lesson-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-list li:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-title i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .lesson-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-free {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .badge-premium {
+            background-color: #FFC107;
+            color: #333;
+        }
+
+        .teachers-section {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .teachers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .teacher-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .teacher-image {
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .teacher-name {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .teacher-subject {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-rating {
+            color: #FFC107;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-bio {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .teacher-social a {
+            color: #3498db;
+            transition: color 0.3s ease;
+        }
+
+        .teacher-social a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html" class="active">المراحل التعليمية</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>المراحل التعليمية</h2>
+            <p>استكشف المراحل التعليمية المختلفة والمواد الدراسية المتاحة</p>
+        </div>
+    </section>
+
+    <section class="education-levels-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>المراحل التعليمية المتاحة</h3>
+                <p>نقدم محتوى تعليمي متميز لجميع المراحل الدراسية في الجزائر</p>
+            </div>
+
+            <div class="levels-container">
+                <div class="level-card primary-level">
+                    <div class="level-header">
+                        <div class="level-icon"><i class="fas fa-child"></i></div>
+                        <h3 class="level-title">المرحلة الابتدائية</h3>
+                    </div>
+                    <div class="level-description">
+                        <p>تعليم أساسي للأطفال من الصف الأول إلى الصف الخامس، يركز على بناء المهارات الأساسية في القراءة والكتابة والحساب.</p>
+                    </div>
+                    <div class="level-subjects">
+                        <h4>المواد الدراسية:</h4>
+                        <ul class="subjects-list">
+                            <li>اللغة العربية</li>
+                            <li>الرياضيات</li>
+                            <li>التربية الإسلامية</li>
+                            <li>التربية العلمية والتكنولوجية</li>
+                            <li>التربية المدنية</li>
+                            <li>اللغة الفرنسية</li>
+                        </ul>
+                    </div>
+                    <div class="level-footer">
+                        <a href="#" class="btn-explore">استكشف الدروس</a>
+                    </div>
+                </div>
+
+                <div class="level-card middle-level">
+                    <div class="level-header">
+                        <div class="level-icon"><i class="fas fa-book-reader"></i></div>
+                        <h3 class="level-title">المرحلة المتوسطة</h3>
+                    </div>
+                    <div class="level-description">
+                        <p>تعليم متوسط للطلاب من الصف السادس إلى الصف التاسع، يركز على تعميق المعرفة وتطوير المهارات التحليلية.</p>
+                    </div>
+                    <div class="level-subjects">
+                        <h4>المواد الدراسية:</h4>
+                        <ul class="subjects-list">
+                            <li>اللغة العربية</li>
+                            <li>الرياضيات</li>
+                            <li>العلوم الطبيعية</li>
+                            <li>العلوم الفيزيائية</li>
+                            <li>التاريخ والجغرافيا</li>
+                            <li>اللغة الفرنسية</li>
+                            <li>اللغة الإنجليزية</li>
+                            <li>التربية الإسلامية</li>
+                        </ul>
+                    </div>
+                    <div class="level-footer">
+                        <a href="#" class="btn-explore">استكشف الدروس</a>
+                    </div>
+                </div>
+
+                <div class="level-card secondary-level">
+                    <div class="level-header">
+                        <div class="level-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="level-title">المرحلة الثانوية</h3>
+                    </div>
+                    <div class="level-description">
+                        <p>تعليم ثانوي للطلاب من الصف العاشر إلى الصف الثاني عشر، يركز على التخصص والتحضير للبكالوريا والتعليم العالي.</p>
+                    </div>
+                    <div class="level-subjects">
+                        <h4>الشعب المتاحة:</h4>
+                        <ul class="subjects-list">
+                            <li>العلوم التجريبية</li>
+                            <li>الرياضيات</li>
+                            <li>تقني رياضي</li>
+                            <li>آداب وفلسفة</li>
+                            <li>لغات أجنبية</li>
+                            <li>تسيير واقتصاد</li>
+                        </ul>
+                    </div>
+                    <div class="level-footer">
+                        <a href="#" class="btn-explore">استكشف الدروس</a>
+                    </div>
+                </div>
+
+                <div class="level-card university-level">
+                    <div class="level-header">
+                        <div class="level-icon"><i class="fas fa-university"></i></div>
+                        <h3 class="level-title">المرحلة الجامعية</h3>
+                    </div>
+                    <div class="level-description">
+                        <p>تعليم جامعي للطلاب في مختلف التخصصات، يركز على التعمق في المجالات العلمية والأدبية والتقنية.</p>
+                    </div>
+                    <div class="level-subjects">
+                        <h4>التخصصات المتاحة:</h4>
+                        <ul class="subjects-list">
+                            <li>العلوم الطبية</li>
+                            <li>العلوم التقنية والهندسية</li>
+                            <li>العلوم الاقتصادية والتجارية</li>
+                            <li>العلوم الإنسانية والاجتماعية</li>
+                            <li>الحقوق والعلوم السياسية</li>
+                            <li>اللغات والآداب</li>
+                        </ul>
+                    </div>
+                    <div class="level-footer">
+                        <a href="#" class="btn-explore">استكشف الدروس</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="curriculum-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>المناهج الدراسية</h3>
+                <p>استكشف المناهج الدراسية والدروس المتاحة لكل مرحلة تعليمية</p>
+            </div>
+
+            <div class="curriculum-tabs">
+                <div class="tab-buttons">
+                    <div class="tab-button active" data-tab="primary">المرحلة الابتدائية</div>
+                    <div class="tab-button" data-tab="middle">المرحلة المتوسطة</div>
+                    <div class="tab-button" data-tab="secondary">المرحلة الثانوية</div>
+                    <div class="tab-button" data-tab="university">المرحلة الجامعية</div>
+                </div>
+
+                <div class="tab-content active" id="primary-tab">
+                    <h3>المرحلة الابتدائية - السنة الخامسة</h3>
+                    <p>دروس السنة الخامسة ابتدائي وفق المنهاج الجزائري الجديد</p>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>اللغة العربية</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>القراءة: نص "الصداقة"</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>القواعد النحوية: الجملة الاسمية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الإملاء: الهمزة المتوسطة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>التعبير الكتابي: كتابة قصة قصيرة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>الرياضيات</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الأعداد الكسرية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الجمع والطرح</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الضرب والقسمة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الهندسة: المثلثات والمربعات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="middle-tab">
+                    <h3>المرحلة المتوسطة - السنة الرابعة متوسط</h3>
+                    <p>دروس السنة الرابعة متوسط للتحضير لشهادة التعليم المتوسط</p>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>الرياضيات</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الدوال والمعادلات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>نظرية فيثاغورس</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الإحصاء والاحتمالات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الهندسة الفضائية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>العلوم الفيزيائية</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الكهرباء والمغناطيسية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الضوء والبصريات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الطاقة وتحولاتها</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>التفاعلات الكيميائية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="secondary-tab">
+                    <h3>المرحلة الثانوية - السنة الثالثة ثانوي</h3>
+                    <p>دروس السنة الثالثة ثانوي للتحضير لشهادة البكالوريا</p>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>العلوم الطبيعية (شعبة علوم تجريبية)</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الوراثة والجينات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>المناعة والاستجابة المناعية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>التنظيم الهرموني</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>التكاثر عند الإنسان</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>الفلسفة (جميع الشعب)</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>المشكلة والحقيقة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>العلوم الإنسانية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الفلسفة والعلم</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>منهجية كتابة المقال الفلسفي</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="university-tab">
+                    <h3>المرحلة الجامعية - السنة الأولى</h3>
+                    <p>دروس السنة الأولى جامعي لمختلف التخصصات</p>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>علوم الحاسوب</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>مدخل إلى البرمجة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الخوارزميات وهياكل البيانات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>قواعد البيانات</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>شبكات الحاسوب</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-accordion">
+                        <div class="subject-header">
+                            <h4>العلوم الاقتصادية</h4>
+                        </div>
+                        <div class="subject-content">
+                            <ul class="lesson-list">
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>مدخل للاقتصاد</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>المحاسبة العامة</span>
+                                    </div>
+                                    <span class="lesson-badge badge-free">مجاني</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الإحصاء الوصفي</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                                <li>
+                                    <div class="lesson-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>الرياضيات المالية</span>
+                                    </div>
+                                    <span class="lesson-badge badge-premium">مدفوع</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="teachers-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>أساتذتنا المتميزون</h3>
+                <p>نخبة من الأساتذة ذوي الخبرة والكفاءة في مختلف المجالات التعليمية</p>
+            </div>
+
+            <div class="teachers-container">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="https://via.placeholder.com/300x300" alt="الأستاذ أحمد">
+                    </div>
+                    <div class="teacher-info">
+                        <h4 class="teacher-name">أ. أحمد بن علي</h4>
+                        <div class="teacher-subject">أستاذ الرياضيات - ثانوي</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="teacher-bio">
+                            أستاذ رياضيات ذو خبرة 15 عاماً في تدريس طلاب البكالوريا، حاصل على شهادة الماجستير في الرياضيات التطبيقية.
+                        </div>
+                        <div class="teacher-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="https://via.placeholder.com/300x300" alt="الأستاذة سارة">
+                    </div>
+                    <div class="teacher-info">
+                        <h4 class="teacher-name">أ. سارة محمد</h4>
+                        <div class="teacher-subject">أستاذة اللغة العربية - متوسط</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="teacher-bio">
+                            أستاذة اللغة العربية متخصصة في تدريس المرحلة المتوسطة، حاصلة على شهادة الدكتوراه في الأدب العربي.
+                        </div>
+                        <div class="teacher-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="https://via.placeholder.com/300x300" alt="الأستاذ كريم">
+                    </div>
+                    <div class="teacher-info">
+                        <h4 class="teacher-name">أ. كريم عبد الله</h4>
+                        <div class="teacher-subject">أستاذ الفيزياء - ثانوي</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="teacher-bio">
+                            أستاذ فيزياء متخصص في تحضير طلاب البكالوريا، له خبرة 10 سنوات في التدريس وإعداد الدروس التفاعلية.
+                        </div>
+                        <div class="teacher-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="https://via.placeholder.com/300x300" alt="الأستاذة ليلى">
+                    </div>
+                    <div class="teacher-info">
+                        <h4 class="teacher-name">أ. ليلى رمضان</h4>
+                        <div class="teacher-subject">أستاذة العلوم الطبيعية - ثانوي</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="teacher-bio">
+                            أستاذة علوم طبيعية متخصصة في شعبة العلوم التجريبية، حاصلة على شهادة الماجستير في علم الأحياء.
+                        </div>
+                        <div class="teacher-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h3>ابدأ رحلتك التعليمية اليوم</h3>
+            <p>انضم إلى آلاف الطلاب الذين يستفيدون من منصة المتألق في التعليم</p>
+            <div class="cta-buttons">
+                <a href="subscriptions.html" class="btn btn-primary">اشترك الآن</a>
+                <a href="contact.html" class="btn btn-outline">تواصل معنا للاستفسار</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to current button and content
+                    this.classList.add('active');
+                    document.getElementById(tabId + '-tab').classList.add('active');
+                });
+            });
+            
+            // Accordion functionality
+            const subjectHeaders = document.querySelectorAll('.subject-header');
+            
+            subjectHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all contents in the same tab
+                    const parentTab = this.closest('.tab-content');
+                    parentTab.querySelectorAll('.subject-content').forEach(item => {
+                        item.classList.remove('show');
+                    });
+                    parentTab.querySelectorAll('.subject-header').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked content if it wasn't active
+                    if (!isActive) {
+                        content.classList.add('show');
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

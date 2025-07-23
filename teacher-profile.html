@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف المعلم - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .teacher-profile-section {
+            padding: 3rem 0;
+        }
+
+        .teacher-profile-header {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            display: flex;
+        }
+
+        .teacher-profile-image {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .teacher-profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-profile-info {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .teacher-profile-name {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .teacher-profile-title {
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .teacher-profile-stats {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-profile-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 2rem;
+        }
+
+        .teacher-profile-stat:last-child {
+            margin-left: 0;
+        }
+
+        .profile-stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-stat-label {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .teacher-profile-subjects {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-profile-subject {
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-left: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .teacher-profile-actions {
+            display: flex;
+        }
+
+        .profile-action-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .profile-action-btn i {
+            margin-left: 0.75rem;
+        }
+
+        .btn-contact-teacher {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .btn-contact-teacher:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-schedule {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .btn-schedule:hover {
+            background-color: #e9ecef;
+        }
+
+        .teacher-profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+
+        .profile-content-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-content-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .profile-content-title {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-content-title i {
+            margin-left: 0.75rem;
+            color: #3498db;
+        }
+
+        .profile-bio {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .profile-education-item,
+        .profile-experience-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-education-item:last-child,
+        .profile-experience-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .education-degree,
+        .experience-position {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .education-institution,
+        .experience-company {
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+            color: #3498db;
+        }
+
+        .education-date,
+        .experience-date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .education-date i,
+        .experience-date i {
+            margin-left: 0.5rem;
+        }
+
+        .education-description,
+        .experience-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .profile-skills {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .profile-skill {
+            margin-bottom: 1.5rem;
+            width: 50%;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skill-percentage {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background-color: #f1f1f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 3px;
+        }
+
+        .profile-lessons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-lesson {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-lesson:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-icon i {
+            color: #3498db;
+        }
+
+        .lesson-info {
+            flex-grow: 1;
+        }
+
+        .lesson-name {
+            font-size: 1rem;
+            margin: 0 0 0.25rem;
+            color: #333;
+        }
+
+        .lesson-details {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+        }
+
+        .lesson-detail {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .lesson-detail i {
+            margin-left: 0.25rem;
+            font-size: 0.7rem;
+        }
+
+        .lesson-action {
+            flex-shrink: 0;
+        }
+
+        .lesson-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .profile-reviews {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-review {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-review:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-meta {
+            flex-grow: 1;
+        }
+
+        .review-author {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .review-rating {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-star {
+            color: #ffc107;
+            margin-left: 0.25rem;
+        }
+
+        .review-content {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .profile-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-tab {
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .profile-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        .profile-tab:hover {
+            color: #3498db;
+        }
+
+        .profile-tab-content {
+            display: none;
+        }
+
+        .profile-tab-content.active {
+            display: block;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .schedule-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .schedule-slot {
+            background-color: #e8f4fd;
+            color: #3498db;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .schedule-slot.available {
+            background-color: #e8f4fd;
+            color: #3498db;
+            cursor: pointer;
+        }
+
+        .schedule-slot.booked {
+            background-color: #fde8e8;
+            color: #e74c3c;
+            cursor: not-allowed;
+        }
+
+        .schedule-slot.available:hover {
+            background-color: #d1e9fb;
+        }
+
+        @media (max-width: 992px) {
+            .teacher-profile-header {
+                flex-direction: column;
+            }
+
+            .teacher-profile-image {
+                width: 100%;
+                height: 300px;
+            }
+
+            .profile-content-col {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-skill {
+                width: 100%;
+            }
+
+            .profile-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.5rem;
+            }
+
+            .profile-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .teacher-profile-stats {
+                flex-wrap: wrap;
+            }
+
+            .teacher-profile-stat {
+                width: 50%;
+                margin-bottom: 1rem;
+                margin-left: 0;
+            }
+
+            .teacher-profile-actions {
+                flex-direction: column;
+            }
+
+            .profile-action-btn {
+                margin-left: 0;
+                margin-bottom: 1rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="teachers.html" class="active">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>ملف المعلم</h2>
+            <p>معلومات تفصيلية عن المعلم وخبراته التعليمية</p>
+        </div>
+    </section>
+
+    <section class="teacher-profile-section">
+        <div class="container">
+            <div class="teacher-profile-header">
+                <div class="teacher-profile-image">
+                    <img src="https://via.placeholder.com/300x300" alt="د. أحمد محمد">
+                </div>
+                <div class="teacher-profile-info">
+                    <h2 class="teacher-profile-name">د. أحمد محمد</h2>
+                    <div class="teacher-profile-title">أستاذ الرياضيات - المرحلة الثانوية</div>
+                    
+                    <div class="teacher-profile-stats">
+                        <div class="teacher-profile-stat">
+                            <span class="profile-stat-value">120</span>
+                            <span class="profile-stat-label">درس</span>
+                        </div>
+                        <div class="teacher-profile-stat">
+                            <span class="profile-stat-value">4.9</span>
+                            <span class="profile-stat-label">تقييم</span>
+                        </div>
+                        <div class="teacher-profile-stat">
+                            <span class="profile-stat-value">1500+</span>
+                            <span class="profile-stat-label">طالب</span>
+                        </div>
+                        <div class="teacher-profile-stat">
+                            <span class="profile-stat-value">15</span>
+                            <span class="profile-stat-label">سنة خبرة</span>
+                        </div>
+                    </div>
+                    
+                    <div class="teacher-profile-subjects">
+                        <span class="teacher-profile-subject">الرياضيات</span>
+                        <span class="teacher-profile-subject">الإحصاء</span>
+                        <span class="teacher-profile-subject">الجبر</span>
+                        <span class="teacher-profile-subject">الهندسة</span>
+                        <span class="teacher-profile-subject">حساب التفاضل والتكامل</span>
+                    </div>
+                    
+                    <div class="teacher-profile-actions">
+                        <button class="profile-action-btn btn-contact-teacher">
+                            <i class="fas fa-envelope"></i>
+                            تواصل مع المعلم
+                        </button>
+                        <button class="profile-action-btn btn-schedule">
+                            <i class="fas fa-calendar-alt"></i>
+                            حجز موعد
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-tabs">
+                <div class="profile-tab active" data-tab="about">نبذة عن المعلم</div>
+                <div class="profile-tab" data-tab="lessons">الدروس</div>
+                <div class="profile-tab" data-tab="schedule">جدول المواعيد</div>
+                <div class="profile-tab" data-tab="reviews">التقييمات</div>
+            </div>
+
+            <div class="profile-tab-content active" id="tab-about">
+                <div class="teacher-profile-content">
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-user"></i>
+                                نبذة شخصية
+                            </h3>
+                            <div class="profile-bio">
+                                <p>د. أحمد محمد هو أستاذ متخصص في تدريس الرياضيات للمرحلة الثانوية مع خبرة تزيد عن 15 عاماً في مجال التعليم. حاصل على درجة الدكتوراه في الرياضيات التطبيقية من جامعة الجزائر، وله العديد من الأبحاث والمنشورات في مجال تعليم الرياضيات.</p>
+                                <p>يتميز د. أحمد بقدرته على تبسيط المفاهيم المعقدة وتقديمها بطريقة سهلة وممتعة للطلاب. كما يستخدم أساليب تدريس مبتكرة تجمع بين النظرية والتطبيق العملي، مما يساعد الطلاب على فهم المادة بشكل أعمق وأكثر فعالية.</p>
+                                <p>يؤمن د. أحمد بأن كل طالب لديه القدرة على التفوق في الرياضيات إذا تم تقديم المادة بالطريقة المناسبة له، ولذلك يحرص على تطوير أساليبه التعليمية باستمرار لتلبية احتياجات جميع الطلاب.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-graduation-cap"></i>
+                                المؤهلات العلمية
+                            </h3>
+                            <div class="profile-education">
+                                <div class="profile-education-item">
+                                    <h4 class="education-degree">دكتوراه في الرياضيات التطبيقية</h4>
+                                    <h5 class="education-institution">جامعة الجزائر</h5>
+                                    <div class="education-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2008 - 2012
+                                    </div>
+                                    <div class="education-description">
+                                        أطروحة حول "طرق مبتكرة في تدريس الرياضيات للمرحلة الثانوية" حصلت على تقدير امتياز مع مرتبة الشرف.
+                                    </div>
+                                </div>
+
+                                <div class="profile-education-item">
+                                    <h4 class="education-degree">ماجستير في الرياضيات</h4>
+                                    <h5 class="education-institution">جامعة وهران</h5>
+                                    <div class="education-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2005 - 2007
+                                    </div>
+                                    <div class="education-description">
+                                        تخصص في الإحصاء التطبيقي والتحليل الرياضي، مع مشروع بحثي حول تطبيقات الرياضيات في العلوم الطبيعية.
+                                    </div>
+                                </div>
+
+                                <div class="profile-education-item">
+                                    <h4 class="education-degree">بكالوريوس في الرياضيات</h4>
+                                    <h5 class="education-institution">جامعة قسنطينة</h5>
+                                    <div class="education-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2001 - 2005
+                                    </div>
+                                    <div class="education-description">
+                                        تخرج بتقدير امتياز مع مرتبة الشرف، وكان من أوائل الدفعة.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-briefcase"></i>
+                                الخبرات المهنية
+                            </h3>
+                            <div class="profile-experience">
+                                <div class="profile-experience-item">
+                                    <h4 class="experience-position">أستاذ الرياضيات</h4>
+                                    <h5 class="experience-company">ثانوية الأمير عبد القادر</h5>
+                                    <div class="experience-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2015 - حتى الآن
+                                    </div>
+                                    <div class="experience-description">
+                                        تدريس مواد الرياضيات المتقدمة للصفوف الثانوية، وإعداد الطلاب لامتحانات البكالوريا، مع نسبة نجاح تتجاوز 95% سنوياً.
+                                    </div>
+                                </div>
+
+                                <div class="profile-experience-item">
+                                    <h4 class="experience-position">محاضر في كلية العلوم</h4>
+                                    <h5 class="experience-company">جامعة الجزائر</h5>
+                                    <div class="experience-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2012 - 2015
+                                    </div>
+                                    <div class="experience-description">
+                                        تدريس مقررات الرياضيات الأساسية والمتقدمة لطلاب البكالوريوس، والإشراف على مشاريع التخرج.
+                                    </div>
+                                </div>
+
+                                <div class="profile-experience-item">
+                                    <h4 class="experience-position">مدرس مساعد</h4>
+                                    <h5 class="experience-company">جامعة وهران</h5>
+                                    <div class="experience-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        2007 - 2012
+                                    </div>
+                                    <div class="experience-description">
+                                        المساعدة في تدريس المقررات العملية والتطبيقية لمواد الرياضيات، وتقديم الدعم الأكاديمي للطلاب.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-chart-line"></i>
+                                المهارات
+                            </h3>
+                            <div class="profile-skills">
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>الجبر</span>
+                                        <span class="skill-percentage">95%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 95%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>الهندسة</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>حساب التفاضل والتكامل</span>
+                                        <span class="skill-percentage">98%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 98%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>الإحصاء</span>
+                                        <span class="skill-percentage">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>نظرية الأعداد</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-skill">
+                                    <div class="skill-name">
+                                        <span>البرمجة الرياضية</span>
+                                        <span class="skill-percentage">75%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-tab-content" id="tab-lessons">
+                <div class="teacher-profile-content">
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-book"></i>
+                                الدروس المتاحة
+                            </h3>
+                            <ul class="profile-lessons">
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">أساسيات الجبر للصف الثاني ثانوي</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                45 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                250 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.8
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-square-root-alt"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">حل المعادلات من الدرجة الثانية</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                60 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                320 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.9
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">مبادئ الإحصاء والاحتمالات</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                55 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                180 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.7
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">الهندسة الفراغية للصف الثالث ثانوي</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                70 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                290 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.9
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-infinity"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">التفاضل والتكامل للصف الثالث ثانوي</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                65 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                350 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                5.0
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="profile-content-col">
+                        <div class="profile-content-box">
+                            <h3 class="profile-content-title">
+                                <i class="fas fa-star"></i>
+                                الدروس الأكثر شعبية
+                            </h3>
+                            <ul class="profile-lessons">
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-infinity"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">التفاضل والتكامل للصف الثالث ثانوي</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                65 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                350 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                5.0
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-square-root-alt"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">حل المعادلات من الدرجة الثانية</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                60 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                320 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.9
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+
+                                <li class="profile-lesson">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="lesson-info">
+                                        <h4 class="lesson-name">الهندسة الفراغية للصف الثالث ثانوي</h4>
+                                        <div class="lesson-details">
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-clock"></i>
+                                                70 دقيقة
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-user"></i>
+                                                290 طالب
+                                            </span>
+                                            <span class="lesson-detail">
+                                                <i class="fas fa-star"></i>
+                                                4.9
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-action">
+                                        <button class="lesson-btn">عرض الدرس</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-tab-content" id="tab-schedule">
+                <div class="profile-content-box">
+                    <h3 class="profile-content-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        جدول المواعيد المتاحة
+                    </h3>
+                    <p>يمكنك حجز موعد مع المعلم من خلال اختيار أحد المواعيد المتاحة في الجدول أدناه:</p>
+                    
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>الوقت</th>
+                                <th>السبت</th>
+                                <th>الأحد</th>
+                                <th>الاثنين</th>
+                                <th>الثلاثاء</th>
+                                <th>الأربعاء</th>
+                                <th>الخميس</th>
+                                <th>الجمعة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9:00 - 10:00</td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10:00 - 11:00</td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11:00 - 12:00</td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>12:00 - 13:00</td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>14:00 - 15:00</td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>15:00 - 16:00</td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>16:00 - 17:00</td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot available">متاح</span></td>
+                                <td></td>
+                                <td><span class="schedule-slot booked">محجوز</span></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="profile-tab-content" id="tab-reviews">
+                <div class="profile-content-box">
+                    <h3 class="profile-content-title">
+                        <i class="fas fa-star"></i>
+                        تقييمات الطلاب
+                    </h3>
+                    <ul class="profile-reviews">
+                        <li class="profile-review">
+                            <div class="review-header">
+                                <div class="review-avatar">
+                                    <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                </div>
+                                <div class="review-meta">
+                                    <h4 class="review-author">محمد علي</h4>
+                                    <div class="review-date">منذ 3 أيام</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                            </div>
+                            <div class="review-content">
+                                أستاذ ممتاز! شرحه واضح جداً وبسيط، استفدت كثيراً من دروسه في الرياضيات وخاصة في موضوع التفاضل والتكامل. أنصح به بشدة لكل من يواجه صعوبة في فهم الرياضيات.
+                            </div>
+                        </li>
+
+                        <li class="profile-review">
+                            <div class="review-header">
+                                <div class="review-avatar">
+                                    <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                </div>
+                                <div class="review-meta">
+                                    <h4 class="review-author">سارة أحمد</h4>
+                                    <div class="review-date">منذ أسبوع</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                            </div>
+                            <div class="review-content">
+                                الدكتور أحمد من أفضل المعلمين الذين درست معهم. يستخدم أساليب تعليمية مبتكرة تجعل فهم الرياضيات أمراً سهلاً وممتعاً. بفضله تمكنت من رفع درجاتي في مادة الرياضيات بشكل كبير.
+                            </div>
+                        </li>
+
+                        <li class="profile-review">
+                            <div class="review-header">
+                                <div class="review-avatar">
+                                    <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                </div>
+                                <div class="review-meta">
+                                    <h4 class="review-author">خالد محمود</h4>
+                                    <div class="review-date">منذ شهر</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                            <div class="review-content">
+                                معلم متميز وصبور جداً. يشرح المفاهيم الصعبة بطريقة مبسطة ويعطي أمثلة كثيرة للتوضيح. الدروس منظمة بشكل جيد والشرح واضح. أنصح به لجميع طلاب المرحلة الثانوية.
+                            </div>
+                        </li>
+
+                        <li class="profile-review">
+                            <div class="review-header">
+                                <div class="review-avatar">
+                                    <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                </div>
+                                <div class="review-meta">
+                                    <h4 class="review-author">نورة سعيد</h4>
+                                    <div class="review-date">منذ شهرين</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                            </div>
+                            <div class="review-content">
+                                كنت أعاني من صعوبة في فهم الرياضيات، لكن بعد الالتحاق بدروس الدكتور أحمد، أصبحت المادة من المواد المفضلة لدي. أسلوبه في الشرح رائع ويراعي الفروق الفردية بين الطلاب.
+                            </div>
+                        </li>
+
+                        <li class="profile-review">
+                            <div class="review-header">
+                                <div class="review-avatar">
+                                    <img src="https://via.placeholder.com/40x40" alt="طالب">
+                                </div>
+                                <div class="review-meta">
+                                    <h4 class="review-author">يوسف كريم</h4>
+                                    <div class="review-date">منذ 3 أشهر</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="fas fa-star"></i></span>
+                                <span class="review-star"><i class="far fa-star"></i></span>
+                            </div>
+                            <div class="review-content">
+                                معلم جيد جداً، لكن أحياناً يكون الشرح سريعاً بعض الشيء. أتمنى لو كان هناك المزيد من التمارين والأمثلة في بعض الدروس. بشكل عام، استفدت كثيراً من دروسه وتحسنت درجاتي.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h3>هل ترغب في الاستفادة من خبرات معلمينا المتميزين؟</h3>
+            <p>اشترك الآن في منصتنا واحصل على دروس حصرية من أفضل المعلمين في الجزائر</p>
+            <div class="cta-buttons">
+                <a href="subscriptions.html" class="btn btn-primary">اشترك الآن</a>
+                <a href="teachers.html" class="btn btn-outline">تصفح المعلمين</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.profile-tab');
+            const tabContents = document.querySelectorAll('.profile-tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Show the corresponding tab content
+                    const tabId = 'tab-' + this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Schedule slot functionality
+            const availableSlots = document.querySelectorAll('.schedule-slot.available');
+            
+            availableSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    const day = this.closest('td').cellIndex;
+                    const time = this.closest('tr').cells[0].textContent;
+                    const dayNames = ['', 'السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
+                    
+                    alert(`هل ترغب في حجز موعد يوم ${dayNames[day]} في الفترة ${time}؟`);
+                    // Here you would implement the actual booking logic
+                });
+            });
+
+            // Contact teacher button functionality
+            const contactBtn = document.querySelector('.btn-contact-teacher');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function() {
+                    window.location.href = 'contact.html?teacher=أحمد-محمد';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

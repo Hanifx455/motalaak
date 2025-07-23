@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوصول محظور | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة الخطأ 403 */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            min-height: 60vh;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            color: #9b59b6;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .error-image {
+            max-width: 400px;
+            margin: 20px 0;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .error-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .error-btn-primary {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+        }
+
+        .error-btn-secondary {
+            background-color: transparent;
+            color: #9b59b6;
+            border: 2px solid #9b59b6;
+        }
+
+        .error-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-btn-primary:hover {
+            background-color: #8e44ad;
+        }
+
+        .error-btn-secondary:hover {
+            background-color: rgba(155, 89, 182, 0.1);
+        }
+
+        .subscription-options {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .subscription-options h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subscription-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subscription-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .subscription-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .subscription-header {
+            background-color: #9b59b6;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .subscription-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .subscription-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        .subscription-period {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .subscription-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .subscription-features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .subscription-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .subscription-features li i {
+            color: #9b59b6;
+            margin-left: 10px;
+        }
+
+        .subscription-footer {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .subscription-btn {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .subscription-btn:hover {
+            background-color: #8e44ad;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 100px;
+            }
+
+            .error-title {
+                font-size: 26px;
+            }
+
+            .error-message {
+                font-size: 16px;
+            }
+
+            .error-image {
+                max-width: 300px;
+            }
+
+            .subscription-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            .error-title {
+                font-size: 22px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .error-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .subscription-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <span>المتألق في التعليم</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="teachers.html">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="error-container">
+            <h1 class="error-code">403</h1>
+            <h2 class="error-title">عذراً، الوصول محظور!</h2>
+            <p class="error-message">ليس لديك صلاحية للوصول إلى هذه الصفحة. هذا المحتوى متاح فقط للمستخدمين المشتركين في خطط الاشتراك المدفوعة.</p>
+            <img src="images/403-illustration.svg" alt="الوصول محظور" class="error-image">
+            
+            <div class="error-actions">
+                <a href="index.html" class="error-btn error-btn-primary">
+                    <i class="fas fa-home"></i>
+                    العودة للرئيسية
+                </a>
+                <a href="login.html" class="error-btn error-btn-secondary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </a>
+                <a href="subscriptions.html" class="error-btn error-btn-secondary">
+                    <i class="fas fa-crown"></i>
+                    عرض الاشتراكات
+                </a>
+            </div>
+            
+            <div class="subscription-options">
+                <h3>اشترك الآن للوصول إلى جميع المحتويات</h3>
+                <div class="subscription-grid">
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">الاشتراك الأساسي</h4>
+                            <div class="subscription-price">500 دج <span class="subscription-period">/ شهرياً</span></div>
+                        </div>
+                        <div class="subscription-content">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check-circle"></i> الوصول إلى الدروس الأساسية</li>
+                                <li><i class="fas fa-check-circle"></i> اختبارات تفاعلية محدودة</li>
+                                <li><i class="fas fa-check-circle"></i> منتدى الدعم</li>
+                                <li><i class="fas fa-check-circle"></i> تطبيق الهاتف المحمول</li>
+                            </ul>
+                        </div>
+                        <div class="subscription-footer">
+                            <button class="subscription-btn">اشترك الآن</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">الاشتراك المتقدم</h4>
+                            <div class="subscription-price">1000 دج <span class="subscription-period">/ شهرياً</span></div>
+                        </div>
+                        <div class="subscription-content">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check-circle"></i> جميع مزايا الاشتراك الأساسي</li>
+                                <li><i class="fas fa-check-circle"></i> الوصول إلى جميع الدروس</li>
+                                <li><i class="fas fa-check-circle"></i> اختبارات تفاعلية غير محدودة</li>
+                                <li><i class="fas fa-check-circle"></i> دعم المعلمين</li>
+                            </ul>
+                        </div>
+                        <div class="subscription-footer">
+                            <button class="subscription-btn">اشترك الآن</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">الاشتراك المميز</h4>
+                            <div class="subscription-price">1500 دج <span class="subscription-period">/ شهرياً</span></div>
+                        </div>
+                        <div class="subscription-content">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check-circle"></i> جميع مزايا الاشتراك المتقدم</li>
+                                <li><i class="fas fa-check-circle"></i> جلسات تعليمية خاصة</li>
+                                <li><i class="fas fa-check-circle"></i> شهادات معتمدة</li>
+                                <li><i class="fas fa-check-circle"></i> دعم على مدار الساعة</li>
+                            </ul>
+                        </div>
+                        <div class="subscription-footer">
+                            <button class="subscription-btn">اشترك الآن</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>معلومات الاتصال</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع ديدوش مراد، الجزائر العاصمة</li>
+                        <li><i class="fas fa-phone"></i> +213 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@motaalik.dz</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>تابعنا على</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 - المتألق في التعليم</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تبديل القائمة في الهاتف المحمول
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (mobileMenuToggle && mainNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                });
+            }
+            
+            // أزرار الاشتراك
+            const subscriptionButtons = document.querySelectorAll('.subscription-btn');
+            subscriptionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const planTitle = this.closest('.subscription-card').querySelector('.subscription-title').textContent;
+                    window.location.href = `subscriptions.html?plan=${encodeURIComponent(planTitle)}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

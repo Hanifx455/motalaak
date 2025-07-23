@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 0.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .faq-category {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+            color: #2980b9;
+        }
+
+        .faq-category:first-child {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#">الدروس</a></li>
+                    <li><a href="#">الاشتراكات</a></li>
+                    <li><a href="faq.html" class="active">الأسئلة الشائعة</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>الأسئلة الشائعة</h2>
+            <p>إليك إجابات على الأسئلة الأكثر شيوعاً حول منصة المتألق في التعليم</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-container">
+                <h3 class="faq-category">حول المنصة</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">ما هي منصة "المتألق في التعليم"؟</div>
+                    <div class="faq-answer">
+                        منصة "المتألق في التعليم" هي منصة تعليمية إلكترونية متخصصة تهدف إلى دعم الطلاب في جميع المراحل التعليمية في الجزائر. توفر المنصة دروساً مجانية ودروساً متميزة متاحة عبر اشتراك شهري، مع محتوى تعليمي عالي الجودة يتوافق مع المناهج الدراسية الجزائرية.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">ما هي المراحل التعليمية التي تغطيها المنصة؟</div>
+                    <div class="faq-answer">
+                        تغطي منصتنا جميع المراحل التعليمية في الجزائر، بدءاً من المرحلة الابتدائية، مروراً بالمتوسطة والثانوية، وصولاً إلى المرحلة الجامعية. نوفر محتوى مخصصاً لكل مرحلة يتناسب مع متطلباتها واحتياجاتها الخاصة.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل المنصة متوافقة مع المناهج الدراسية الجزائرية؟</div>
+                    <div class="faq-answer">
+                        نعم، جميع المحتوى التعليمي في منصة "المتألق في التعليم" متوافق تماماً مع المناهج الدراسية المعتمدة في الجزائر. يتم إعداد الدروس والمواد التعليمية من قبل مدرسين وخبراء تربويين جزائريين ذوي خبرة في المناهج المحلية.
+                    </div>
+                </div>
+
+                <h3 class="faq-category">الاشتراكات والمدفوعات</h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">ما هي أنواع الاشتراكات المتاحة؟</div>
+                    <div class="faq-answer">
+                        توفر المنصة ثلاثة أنواع من الاشتراكات:
+                        <ul>
+                            <li><strong>الاشتراك المجاني:</strong> يتيح الوصول إلى الدروس الأساسية والمشاركة في المنتدى التعليمي.</li>
+                            <li><strong>الاشتراك الأساسي:</strong> يتيح الوصول إلى جميع الدروس المتميزة والاختبارات التفاعلية وتنزيل المرفقات التعليمية.</li>
+                            <li><strong>الاشتراك الاحترافي:</strong> يشمل جميع مزايا الاشتراك الأساسي بالإضافة إلى دروس خصوصية أسبوعية ومراجعة للواجبات وشهادات إتمام الدورات.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">كم تبلغ تكلفة الاشتراكات المدفوعة؟</div>
+                    <div class="faq-answer">
+                        تبلغ تكلفة الاشتراكات الشهرية كالتالي:
+                        <ul>
+                            <li><strong>الاشتراك المجاني:</strong> 0 دج</li>
+                            <li><strong>الاشتراك الأساسي:</strong> 500 دج شهرياً</li>
+                            <li><strong>الاشتراك الاحترافي:</strong> 1200 دج شهرياً</li>
+                        </ul>
+                        كما نوفر خصومات خاصة للاشتراكات السنوية والمجموعات الدراسية.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">ما هي طرق الدفع المتاحة؟</div>
+                    <div class="faq-answer">
+                        نوفر عدة طرق للدفع تشمل:
+                        <ul>
+                            <li>البطاقات البنكية (CIB، Edahabia)</li>
+                            <li>الدفع الإلكتروني عبر تطبيقات الدفع الجزائرية</li>
+                            <li>التحويل البنكي</li>
+                            <li>الدفع عبر مكاتب البريد</li>
+                        </ul>
+                        نعمل باستمرار على إضافة المزيد من طرق الدفع لتسهيل العملية على مستخدمينا.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني إلغاء اشتراكي في أي وقت؟</div>
+                    <div class="faq-answer">
+                        نعم، يمكنك إلغاء اشتراكك في أي وقت من خلال لوحة التحكم الخاصة بحسابك. عند إلغاء الاشتراك، ستستمر في الوصول إلى المحتوى المدفوع حتى نهاية فترة الاشتراك الحالية، ولن يتم تجديد الاشتراك تلقائياً في الشهر التالي.
+                    </div>
+                </div>
+
+                <h3 class="faq-category">المحتوى التعليمي</h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">ما هي أنواع المحتوى التعليمي المتوفرة؟</div>
+                    <div class="faq-answer">
+                        توفر المنصة مجموعة متنوعة من المحتوى التعليمي تشمل:
+                        <ul>
+                            <li>دروس نظرية مكتوبة</li>
+                            <li>فيديوهات شرح تفصيلية</li>
+                            <li>تمارين تفاعلية</li>
+                            <li>اختبارات للتقييم الذاتي</li>
+                            <li>ملخصات للمراجعة</li>
+                            <li>نماذج امتحانات سابقة مع الحلول</li>
+                            <li>مرفقات تعليمية قابلة للتنزيل (PDF، عروض تقديمية)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني الوصول إلى المحتوى دون اتصال بالإنترنت؟</div>
+                    <div class="faq-answer">
+                        حالياً، يتطلب الوصول إلى محتوى المنصة اتصالاً بالإنترنت. ومع ذلك، يمكن للمشتركين في الخطط المدفوعة تنزيل بعض المرفقات التعليمية مثل ملفات PDF والملخصات للاطلاع عليها لاحقاً دون اتصال بالإنترنت. نخطط لإضافة ميزة الوصول دون اتصال في الإصدارات المستقبلية من تطبيق الهاتف المحمول.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">كيف يتم تحديث المحتوى التعليمي؟</div>
+                    <div class="faq-answer">
+                        نقوم بتحديث المحتوى التعليمي بشكل منتظم لضمان مواكبته لأحدث المناهج والتطورات التعليمية. يتم إضافة دروس جديدة أسبوعياً، وتحديث المحتوى الحالي عند الحاجة، خاصة عند تغيير المناهج الدراسية. كما نأخذ بعين الاعتبار ملاحظات المستخدمين لتحسين المحتوى باستمرار.
+                    </div>
+                </div>
+
+                <h3 class="faq-category">الدعم الفني والمساعدة</h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">كيف يمكنني الحصول على المساعدة إذا واجهت مشكلة؟</div>
+                    <div class="faq-answer">
+                        يمكنك الحصول على المساعدة من خلال عدة قنوات:
+                        <ul>
+                            <li>صفحة الدعم الفني في المنصة</li>
+                            <li>البريد الإلكتروني: support@motalk.dz</li>
+                            <li>رقم الهاتف: 0123456789 (متاح من الأحد إلى الخميس، 9 صباحاً - 5 مساءً)</li>
+                            <li>المحادثة المباشرة المتاحة في المنصة خلال ساعات العمل</li>
+                            <li>صفحة الأسئلة الشائعة (هذه الصفحة)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني طلب مساعدة في فهم درس معين؟</div>
+                    <div class="faq-answer">
+                        نعم، يمكن لجميع المستخدمين طرح أسئلة في قسم التعليقات الخاص بكل درس. المشتركون في الخطة الاحترافية يمكنهم أيضاً الاستفادة من خدمة الدروس الخصوصية والحصول على مساعدة مباشرة من المدرسين المتخصصين في المنصة.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل توفرون شهادات إتمام للدورات التعليمية؟</div>
+                    <div class="faq-answer">
+                        نعم، نوفر شهادات إتمام للدورات التعليمية للمشتركين في الخطة الاحترافية. يمكن للطلاب الحصول على شهادة بعد إكمال جميع الدروس والاختبارات المطلوبة في الدورة بنجاح. هذه الشهادات يمكن تنزيلها كملف PDF أو مشاركتها مباشرة على منصات التواصل الاجتماعي.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#">الدروس</a></li>
+                        <li><a href="#">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = document.querySelectorAll('.faq-question');
+            
+            questions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all answers
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        item.classList.remove('show');
+                    });
+                    document.querySelectorAll('.faq-question').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked answer if it wasn't active
+                    if (!isActive) {
+                        answer.classList.add('show');
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

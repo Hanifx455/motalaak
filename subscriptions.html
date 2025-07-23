@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاشتراكات - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2980b9;
+        }
+        .pricing-section {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+        }
+        
+        .toggle-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-label.active {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .discount-badge {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: #3498db;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #3498db;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .free-plan {
+            border-color: #a1c4fd;
+        }
+        
+        .basic-plan {
+            border-color: #84fab0;
+        }
+        
+        .pro-plan {
+            border-color: #fa709a;
+        }
+
+        .pricing-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .free-plan .pricing-header {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .basic-plan .pricing-header {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .pro-plan .pricing-header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .pricing-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 1rem 0 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .price-change {
+            animation: priceChange 0.5s ease;
+        }
+        
+        @keyframes priceChange {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .savings-badge {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            font-weight: 500;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .monthly-equivalent {
+            display: block;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.3rem;
+            font-weight: 400;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .pricing-price small {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-duration {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-features {
+            padding: 2rem;
+            list-style: none;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #4CAF50;
+            margin-left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .pricing-features li.unavailable {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .pricing-features li.unavailable::before {
+            content: "✕";
+            color: #F44336;
+        }
+
+        .pricing-footer {
+            padding: 1.5rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .btn-subscribe {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-subscribe:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-subscribe:hover:before {
+            width: 100%;
+        }
+
+        .free-plan .btn-subscribe {
+            background-color: #a1c4fd;
+            color: #fff;
+        }
+
+        .basic-plan .btn-subscribe {
+            background-color: #84fab0;
+            color: #fff;
+        }
+
+        .pro-plan .btn-subscribe {
+            background-color: #fa709a;
+            color: #fff;
+        }
+
+        .free-plan .btn-subscribe:hover {
+            background-color: #8fb8f8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(161, 196, 253, 0.4);
+        }
+
+        .basic-plan .btn-subscribe:hover {
+            background-color: #6de89e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(132, 250, 176, 0.4);
+        }
+
+        .pro-plan .btn-subscribe:hover {
+            background-color: #f55c8d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(250, 112, 154, 0.4);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FF5722;
+            color: white;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(-45deg) translateX(-40%) translateY(-50%);
+        }
+
+        .comparison-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-table tr:hover td {
+            background-color: #f0f7ff;
+        }
+
+        .comparison-table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .comparison-table td:first-child {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .check-icon {
+            color: #4CAF50;
+            font-size: 1.2rem;
+        }
+
+        .times-icon {
+            color: #F44336;
+            font-size: 1.2rem;
+        }
+
+        .faq-section {
+            padding: 5rem 0;
+            background-color: #f0f7ff;
+            position: relative;
+        }
+        
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-right: 4px solid #3498db;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: #3498db;
+        }
+
+        .faq-question::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: #3498db;
+        }
+
+        .faq-question.active {
+            color: #3498db;
+        }
+        
+        .faq-question.active::after {
+            content: '\f106';
+            transform: rotate(0deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .faq-answer.show {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .faq-answer p, .faq-answer ul, .faq-answer ol {
+            margin-bottom: 1rem;
+        }
+        
+        .faq-answer ul li, .faq-answer ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            position: relative;
+        }
+        
+        .payment-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .payment-method {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            border-bottom-color: #3498db;
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .payment-method:hover .payment-icon {
+            transform: scale(1.2);
+        }
+
+        .payment-name {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+        }
+        
+        /* CTA Section Styles */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #e4efe9;
+            border-radius: 50%;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-feature i {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+        
+        .cta-buttons {
+            margin-bottom: 2.5rem;
+        }
+        
+        .btn-lg {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            margin: 0 0.5rem;
+        }
+        
+        .cta-testimonial {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+        }
+        
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#">الدروس</a></li>
+                    <li><a href="subscriptions.html" class="active">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>خطط الاشتراك</h2>
+            <p>اختر الخطة المناسبة لاحتياجاتك التعليمية</p>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>باقات الاشتراك المتاحة</h3>
+                <p>نقدم لك مجموعة متنوعة من الخطط لتناسب احتياجاتك ومستواك التعليمي</p>
+                <div class="pricing-toggle">
+                    <span class="toggle-label active">شهري</span>
+                    <label class="switch">
+                        <input type="checkbox" id="billingToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">سنوي <span class="discount-badge">خصم 20%</span></span>
+                </div>
+            </div>
+
+            <div class="pricing-container">
+                <div class="pricing-card free-plan">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">الخطة المجانية</h3>
+                        <div class="pricing-price">0 <small>دج</small></div>
+                        <div class="pricing-duration">مدى الحياة</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>الوصول إلى الدروس المجانية</li>
+                        <li>المشاركة في المنتدى التعليمي</li>
+                        <li>إمكانية التعليق على الدروس</li>
+                        <li class="unavailable">الوصول إلى الدروس المتميزة</li>
+                        <li class="unavailable">تنزيل المرفقات التعليمية</li>
+                        <li class="unavailable">الاختبارات التفاعلية</li>
+                        <li class="unavailable">الدروس الخصوصية</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn-subscribe">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card basic-plan">
+                    <div class="pricing-header">
+                        <div class="popular-badge">الأكثر شعبية</div>
+                        <h3 class="pricing-title">الخطة الأساسية</h3>
+                        <div class="pricing-price">500 <small>دج</small></div>
+                        <div class="pricing-duration">شهرياً</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>جميع مميزات الخطة المجانية</li>
+                        <li>الوصول إلى الدروس المتميزة</li>
+                        <li>تنزيل المرفقات التعليمية</li>
+                        <li>الاختبارات التفاعلية</li>
+                        <li>دعم فني عبر البريد الإلكتروني</li>
+                        <li class="unavailable">الدروس الخصوصية</li>
+                        <li class="unavailable">شهادات إتمام الدورات</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn-subscribe">اشترك الآن</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card pro-plan">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">الخطة الاحترافية</h3>
+                        <div class="pricing-price">1200 <small>دج</small></div>
+                        <div class="pricing-duration">شهرياً</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>جميع مميزات الخطة الأساسية</li>
+                        <li>دروس خصوصية أسبوعية</li>
+                        <li>مراجعة الواجبات</li>
+                        <li>شهادات إتمام الدورات</li>
+                        <li>دعم فني على مدار الساعة</li>
+                        <li>أولوية في الرد على الاستفسارات</li>
+                        <li>محتوى حصري للمشتركين</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn-subscribe">اشترك الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>مقارنة بين الخطط</h3>
+                <p>تعرف على الفروق بين خطط الاشتراك المختلفة لاختيار ما يناسبك</p>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>الميزات</th>
+                        <th>الخطة المجانية</th>
+                        <th>الخطة الأساسية</th>
+                        <th>الخطة الاحترافية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الوصول إلى الدروس المجانية</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>المشاركة في المنتدى التعليمي</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>التعليق على الدروس</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>الوصول إلى الدروس المتميزة</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>تنزيل المرفقات التعليمية</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>الاختبارات التفاعلية</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>دعم فني</td>
+                        <td>لا يوجد</td>
+                        <td>عبر البريد الإلكتروني</td>
+                        <td>على مدار الساعة</td>
+                    </tr>
+                    <tr>
+                        <td>دروس خصوصية</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td>أسبوعياً</td>
+                    </tr>
+                    <tr>
+                        <td>مراجعة الواجبات</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>شهادات إتمام الدورات</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>محتوى حصري</td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-times times-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="payment-section">
+        <div class="container text-center">
+            <h3>طرق الدفع المتاحة</h3>
+            <p>نوفر لك العديد من طرق الدفع السهلة والآمنة</p>
+
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="payment-name">البطاقات البنكية</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="payment-name">التحويل البنكي</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="payment-name">الدفع عبر البريد</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="payment-name">الدفع الإلكتروني</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>أسئلة شائعة حول الاشتراكات</h3>
+                <p>إليك إجابات على الأسئلة الأكثر شيوعاً حول خطط الاشتراك</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">كيف يمكنني الاشتراك في إحدى الخطط المدفوعة؟</div>
+                    <div class="faq-answer">
+                        <p>للاشتراك في إحدى الخطط المدفوعة، اتبع الخطوات التالية:</p>
+                        <ol>
+                            <li>قم بإنشاء حساب على المنصة أو تسجيل الدخول إذا كان لديك حساب بالفعل</li>
+                            <li>انتقل إلى صفحة الاشتراكات (هذه الصفحة)</li>
+                            <li>اختر الخطة التي تناسبك واضغط على زر "اشترك الآن"</li>
+                            <li>اختر طريقة الدفع المفضلة لديك</li>
+                            <li>أكمل عملية الدفع باتباع التعليمات</li>
+                            <li>بمجرد اكتمال عملية الدفع، سيتم تفعيل اشتراكك فوراً</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني تغيير خطة الاشتراك الخاصة بي؟</div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنك ترقية خطة الاشتراك الخاصة بك في أي وقت. عند الترقية، سيتم احتساب المبلغ المتبقي من اشتراكك الحالي وخصمه من سعر الخطة الجديدة.</p>
+                        <p>إذا كنت ترغب في تخفيض مستوى اشتراكك، فيمكنك القيام بذلك عند انتهاء فترة الاشتراك الحالية. للقيام بذلك، انتقل إلى إعدادات حسابك، ثم اختر "إدارة الاشتراك" واتبع التعليمات.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يتم تجديد الاشتراك تلقائياً؟</div>
+                    <div class="faq-answer">
+                        <p>نعم، يتم تجديد الاشتراكات المدفوعة تلقائياً عند انتهاء فترة الاشتراك الحالية، ما لم تقم بإلغاء التجديد التلقائي. يمكنك إلغاء التجديد التلقائي في أي وقت من خلال إعدادات حسابك.</p>
+                        <p>سنرسل لك إشعاراً قبل تجديد اشتراكك بثلاثة أيام لتذكيرك بموعد التجديد.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني إلغاء اشتراكي واسترداد المبلغ؟</div>
+                    <div class="faq-answer">
+                        <p>يمكنك إلغاء اشتراكك في أي وقت، ولكن سياسة استرداد المبلغ تعتمد على الوقت المنقضي منذ بداية الاشتراك:</p>
+                        <ul>
+                            <li>إذا قمت بإلغاء الاشتراك خلال 7 أيام من تاريخ الاشتراك، يمكنك استرداد المبلغ كاملاً.</li>
+                            <li>إذا قمت بإلغاء الاشتراك بعد 7 أيام وقبل 14 يوماً من تاريخ الاشتراك، يمكنك استرداد 50% من المبلغ.</li>
+                            <li>إذا قمت بإلغاء الاشتراك بعد 14 يوماً من تاريخ الاشتراك، لا يمكن استرداد المبلغ.</li>
+                        </ul>
+                        <p>لطلب استرداد المبلغ، يرجى التواصل مع فريق الدعم الفني عبر البريد الإلكتروني: support@motalk.dz</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">هل هناك خصومات للمجموعات أو المدارس؟</div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم خصومات خاصة للمجموعات والمدارس والمؤسسات التعليمية. إذا كنت ترغب في اشتراك مجموعة من الطلاب أو مدرسة بأكملها، يرجى التواصل معنا عبر البريد الإلكتروني: groups@motalk.dz لمناقشة الخيارات المتاحة والحصول على عرض سعر مخصص.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <div class="cta-content">
+                <h2>ابدأ رحلتك التعليمية اليوم</h2>
+                <p class="cta-description">انضم إلى أكثر من <span class="highlight">10,000</span> طالب يستفيدون من منصة المتألق في التعليم</p>
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>دروس متميزة</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>أساتذة محترفون</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-certificate"></i>
+                        <span>شهادات معتمدة</span>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-lg">اشترك الآن <i class="fas fa-arrow-left"></i></a>
+                    <a href="contact.html" class="btn btn-outline btn-lg">تواصل معنا للاستفسار</a>
+                </div>
+                <div class="cta-testimonial">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"منصة المتألق في التعليم غيرت مساري الدراسي للأفضل. الدروس واضحة والأساتذة متميزون!"</p>
+                    <p class="testimonial-author">- أحمد، طالب بكالوريا</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#">الدروس</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Accordion
+            const questions = document.querySelectorAll('.faq-question');
+            
+            questions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all answers with smooth animation
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        item.classList.remove('show');
+                    });
+                    document.querySelectorAll('.faq-question').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked answer if it wasn't active
+                    if (!isActive) {
+                        answer.classList.add('show');
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Pricing Toggle Functionality
+            const billingToggle = document.getElementById('billingToggle');
+            const monthlyLabel = document.querySelector('.toggle-label:first-child');
+            const yearlyLabel = document.querySelector('.toggle-label:last-child');
+            
+            // Define pricing data for monthly and annual plans
+            const pricingData = {
+                basic: {
+                    monthly: 500,
+                    annual: 4800 * 0.8 // 20% discount on annual plan
+                },
+                pro: {
+                    monthly: 1200,
+                    annual: 11520 * 0.8 // 20% discount on annual plan
+                }
+            };
+            
+            // Function to update pricing display
+            function updatePricing(isAnnual) {
+                // Update active state for labels
+                if (isAnnual) {
+                    monthlyLabel.classList.remove('active');
+                    yearlyLabel.classList.add('active');
+                } else {
+                    monthlyLabel.classList.add('active');
+                    yearlyLabel.classList.remove('active');
+                }
+                
+                // Update basic plan pricing
+                const basicPriceElement = document.querySelector('.basic-plan .pricing-price');
+                const basicDurationElement = document.querySelector('.basic-plan .pricing-duration');
+                
+                // Update pro plan pricing
+                const proPriceElement = document.querySelector('.pro-plan .pricing-price');
+                const proDurationElement = document.querySelector('.pro-plan .pricing-duration');
+                
+                if (isAnnual) {
+                    // Update to annual pricing
+                    const basicAnnualPrice = Math.round(pricingData.basic.annual);
+                    const basicSavings = Math.round(pricingData.basic.monthly * 12 - basicAnnualPrice);
+                    const basicMonthlyEquivalent = Math.round(basicAnnualPrice / 12);
+                    basicPriceElement.innerHTML = basicAnnualPrice + ' <small>دج</small> <span class="savings-badge">توفير ' + basicSavings + ' دج</span>';
+                    basicDurationElement.innerHTML = 'سنوياً <span class="monthly-equivalent">(' + basicMonthlyEquivalent + ' دج/شهر)</span>';
+                    
+                    const proAnnualPrice = Math.round(pricingData.pro.annual);
+                    const proSavings = Math.round(pricingData.pro.monthly * 12 - proAnnualPrice);
+                    const proMonthlyEquivalent = Math.round(proAnnualPrice / 12);
+                    proPriceElement.innerHTML = proAnnualPrice + ' <small>دج</small> <span class="savings-badge">توفير ' + proSavings + ' دج</span>';
+                    proDurationElement.innerHTML = 'سنوياً <span class="monthly-equivalent">(' + proMonthlyEquivalent + ' دج/شهر)</span>';
+                } else {
+                    // Update to monthly pricing
+                    basicPriceElement.innerHTML = pricingData.basic.monthly + ' <small>دج</small>';
+                    basicDurationElement.textContent = 'شهرياً';
+                    
+                    proPriceElement.innerHTML = pricingData.pro.monthly + ' <small>دج</small>';
+                    proDurationElement.textContent = 'شهرياً';
+                }
+                
+                // Add animation effect to price changes
+                [basicPriceElement, proPriceElement].forEach(el => {
+                    el.classList.add('price-change');
+                    setTimeout(() => {
+                        el.classList.remove('price-change');
+                    }, 500);
+                });
+            }
+            
+            // Initialize pricing display
+            updatePricing(billingToggle.checked);
+            
+            // Add event listener for toggle changes
+            billingToggle.addEventListener('change', function() {
+                updatePricing(this.checked);
+            });
+            
+            // Smooth scroll to sections when clicking on pricing buttons
+            document.querySelectorAll('.btn-subscribe').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        document.querySelector('.cta-section').scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                });
+            });
+            
+            // Add animation to pricing cards on scroll
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            pricingCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

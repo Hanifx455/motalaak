@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدونة التعليمية - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-section {
+            padding: 3rem 0;
+        }
+
+        .blog-sidebar {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar-widget {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-widget:last-child {
+            margin-bottom: 0;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .widget-title i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .recent-posts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recent-post {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .recent-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recent-post-link {
+            display: flex;
+            text-decoration: none;
+        }
+
+        .recent-post-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-post-info {
+            flex-grow: 1;
+        }
+
+        .recent-post-title {
+            font-size: 0.9rem;
+            color: #333;
+            margin: 0 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .recent-post-link:hover .recent-post-title {
+            color: #3498db;
+        }
+
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+
+        .recent-post-date i {
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        .categories {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .category-link:hover {
+            color: #3498db;
+        }
+
+        .category-count {
+            background-color: #f8f9fa;
+            color: #999;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .category-link:hover .category-count {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tag-link {
+            display: inline-block;
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag-link:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .search-box {
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: #3498db;
+            color: #fff;
+            z-index: 1;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-title {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .blog-title a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .blog-title a:hover {
+            color: #3498db;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-author i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-date i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .blog-excerpt {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #2980b9;
+        }
+
+        .blog-link i {
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .featured-post {
+            margin-bottom: 3rem;
+        }
+
+        .featured-post-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-post-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: #e74c3c;
+            color: #fff;
+            z-index: 1;
+        }
+
+        .featured-post-content {
+            padding: 2rem;
+        }
+
+        .featured-post-title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .featured-post-title a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .featured-post-title a:hover {
+            color: #3498db;
+        }
+
+        .featured-post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .featured-post-excerpt {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .pagination-item {
+            margin: 0 0.25rem;
+        }
+
+        .pagination-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-link:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pagination-link.active {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .pagination-link.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .blog-post-header {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post-image {
+            height: 400px;
+            position: relative;
+        }
+
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-post-info {
+            padding: 2rem;
+        }
+
+        .blog-post-title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .blog-post-meta-item {
+            display: flex;
+            align-items: center;
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post-meta-item i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .blog-post-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .blog-post-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .blog-post-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .blog-post-content ul,
+        .blog-post-content ol {
+            margin-bottom: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .blog-post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post-content blockquote {
+            border-right: 4px solid #3498db;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: #f8f9fa;
+            font-style: italic;
+        }
+
+        .blog-post-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .blog-post-tags {
+            margin-top: 2rem;
+        }
+
+        .blog-post-tags-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .author-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+        }
+
+        .author-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex-grow: 1;
+        }
+
+        .author-name {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .author-bio {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .author-social {
+            display: flex;
+        }
+
+        .author-social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            color: #666;
+            margin-left: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .author-social-link:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .related-posts {
+            margin-bottom: 2rem;
+        }
+
+        .related-posts-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .comments-section {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .comments-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .comment-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comment-meta {
+            flex-grow: 1;
+        }
+
+        .comment-author {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .comment-content {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .comment-reply {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .comment-reply:hover {
+            color: #2980b9;
+        }
+
+        .comment-reply i {
+            margin-left: 0.5rem;
+        }
+
+        .comment-form {
+            margin-top: 2rem;
+        }
+
+        .comment-form-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -0.75rem;
+            margin-right: -0.75rem;
+        }
+
+        .form-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        @media (max-width: 992px) {
+            .blog-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .featured-post-card {
+                flex-direction: column;
+            }
+
+            .featured-post-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .form-col {
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-col:last-child {
+                margin-bottom: 0;
+            }
+
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-image {
+                margin: 0 auto 1.5rem;
+            }
+
+            .author-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-post-meta-item {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="blog.html" class="active">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>المدونة التعليمية</h2>
+            <p>مقالات ومواضيع تعليمية متنوعة لمساعدتك في رحلتك التعليمية</p>
+        </div>
+    </section>
+
+    <section class="featured-post">
+        <div class="container">
+            <div class="featured-post-card">
+                <div class="featured-post-image">
+                    <img src="https://via.placeholder.com/800x400" alt="مقال مميز">
+                    <span class="featured-badge">مقال مميز</span>
+                </div>
+                <div class="featured-post-content">
+                    <h3 class="featured-post-title"><a href="#">كيف تحسن مهارات الدراسة والتحصيل العلمي؟</a></h3>
+                    <div class="featured-post-meta">
+                        <div class="blog-author">
+                            <i class="fas fa-user"></i>
+                            <span>د. أحمد محمد</span>
+                        </div>
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>15 أكتوبر 2023</span>
+                        </div>
+                    </div>
+                    <div class="featured-post-excerpt">
+                        تعتبر مهارات الدراسة الفعالة من أهم العوامل التي تساهم في تحقيق النجاح الأكاديمي. في هذا المقال، نستعرض أفضل الاستراتيجيات والتقنيات التي يمكن للطلاب تطبيقها لتحسين قدراتهم على التعلم والاستيعاب وتنظيم الوقت بشكل فعال. سنتناول أيضاً كيفية التغلب على التحديات الشائعة مثل تشتت الانتباه وتأجيل المهام، وكيفية الاستعداد للامتحانات بطريقة مثالية.
+                    </div>
+                    <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="blog-grid">
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">نصائح تعليمية</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">10 طرق فعالة للمذاكرة قبل الامتحانات</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>سارة علي</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>10 أكتوبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    تعرف على أفضل الطرق للمذاكرة بفعالية قبل الامتحانات وكيفية تنظيم وقتك للحصول على أفضل النتائج.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">تقنيات التعليم</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">دور التكنولوجيا في تطوير التعليم الحديث</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>م. محمد خالد</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>5 أكتوبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    كيف غيرت التكنولوجيا وجه التعليم في العصر الحديث وما هي أبرز التقنيات المستخدمة في الفصول الدراسية اليوم.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">علم النفس التربوي</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">أثر الذكاء العاطفي على التحصيل الدراسي</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>د. ليلى أحمد</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>1 أكتوبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    دراسة تحليلية عن العلاقة بين الذكاء العاطفي والقدرة على التحصيل الدراسي وكيفية تنمية المهارات العاطفية.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">تجارب تعليمية</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">قصة نجاح: من الرسوب إلى التفوق</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>كريم سعيد</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>25 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    قصة طالب واجه صعوبات دراسية كبيرة وكيف استطاع التغلب عليها والتحول إلى طالب متفوق في مادة الرياضيات.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">مهارات القرن 21</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">المهارات الأساسية التي يحتاجها طلاب اليوم للنجاح</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>أ. نورة محمد</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>20 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    ما هي المهارات الأساسية التي يحتاجها الطلاب في القرن الحادي والعشرين للنجاح في الدراسة والعمل المستقبلي.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="https://via.placeholder.com/400x250" alt="مقال تعليمي">
+                                <span class="blog-category">صحة الطلاب</span>
+                            </div>
+                            <div class="blog-content">
+                                <h3 class="blog-title"><a href="#">العلاقة بين التغذية السليمة والأداء الدراسي</a></h3>
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <i class="fas fa-user"></i>
+                                        <span>د. سمير حسن</span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>15 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="blog-excerpt">
+                                    كيف تؤثر التغذية السليمة على قدرات الطلاب الذهنية وأدائهم الدراسي، ونصائح غذائية للطلاب خلال فترة الامتحانات.
+                                </div>
+                                <a href="#" class="blog-link">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link disabled">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link active">1</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">2</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">3</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">4</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="blog-sidebar">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="ابحث في المدونة...">
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">
+                                <i class="fas fa-clock"></i>
+                                <span>أحدث المقالات</span>
+                            </h4>
+                            <ul class="recent-posts">
+                                <li class="recent-post">
+                                    <a href="#" class="recent-post-link">
+                                        <div class="recent-post-image">
+                                            <img src="https://via.placeholder.com/70x70" alt="مقال حديث">
+                                        </div>
+                                        <div class="recent-post-info">
+                                            <h5 class="recent-post-title">كيف تحسن مهارات الدراسة والتحصيل العلمي؟</h5>
+                                            <div class="recent-post-date">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>15 أكتوبر 2023</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="recent-post">
+                                    <a href="#" class="recent-post-link">
+                                        <div class="recent-post-image">
+                                            <img src="https://via.placeholder.com/70x70" alt="مقال حديث">
+                                        </div>
+                                        <div class="recent-post-info">
+                                            <h5 class="recent-post-title">10 طرق فعالة للمذاكرة قبل الامتحانات</h5>
+                                            <div class="recent-post-date">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>10 أكتوبر 2023</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="recent-post">
+                                    <a href="#" class="recent-post-link">
+                                        <div class="recent-post-image">
+                                            <img src="https://via.placeholder.com/70x70" alt="مقال حديث">
+                                        </div>
+                                        <div class="recent-post-info">
+                                            <h5 class="recent-post-title">دور التكنولوجيا في تطوير التعليم الحديث</h5>
+                                            <div class="recent-post-date">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>5 أكتوبر 2023</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">
+                                <i class="fas fa-folder"></i>
+                                <span>التصنيفات</span>
+                            </h4>
+                            <ul class="categories">
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>نصائح تعليمية</span>
+                                        <span class="category-count">15</span>
+                                    </a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>تقنيات التعليم</span>
+                                        <span class="category-count">12</span>
+                                    </a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>علم النفس التربوي</span>
+                                        <span class="category-count">8</span>
+                                    </a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>تجارب تعليمية</span>
+                                        <span class="category-count">10</span>
+                                    </a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>مهارات القرن 21</span>
+                                        <span class="category-count">7</span>
+                                    </a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">
+                                        <span>صحة الطلاب</span>
+                                        <span class="category-count">5</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">
+                                <i class="fas fa-tags"></i>
+                                <span>الوسوم</span>
+                            </h4>
+                            <div class="tags">
+                                <a href="#" class="tag-link">مذاكرة</a>
+                                <a href="#" class="tag-link">امتحانات</a>
+                                <a href="#" class="tag-link">تعليم</a>
+                                <a href="#" class="tag-link">تكنولوجيا</a>
+                                <a href="#" class="tag-link">نصائح</a>
+                                <a href="#" class="tag-link">تفوق دراسي</a>
+                                <a href="#" class="tag-link">مهارات</a>
+                                <a href="#" class="tag-link">تنمية ذاتية</a>
+                                <a href="#" class="tag-link">تركيز</a>
+                                <a href="#" class="tag-link">ذكاء</a>
+                                <a href="#" class="tag-link">صحة</a>
+                                <a href="#" class="tag-link">تغذية</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h3>هل تريد المساهمة في المدونة التعليمية؟</h3>
+            <p>يمكنك مشاركة تجاربك وخبراتك التعليمية مع مجتمعنا التعليمي</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">تواصل معنا</a>
+                <a href="#" class="btn btn-outline">تعرف على شروط النشر</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+                console.log('Searching for:', searchTerm);
+                // Here you would implement the actual search logic
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

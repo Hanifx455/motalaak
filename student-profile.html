@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي للطالب | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة الملف الشخصي للطالب */
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .profile-sidebar {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .profile-main {
+            flex: 3;
+            min-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+            border: 4px solid #3498db;
+        }
+
+        .profile-info h1 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .profile-meta-item {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .profile-meta-item i {
+            margin-left: 5px;
+            color: #3498db;
+        }
+
+        .profile-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .profile-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .profile-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        .profile-tab-content {
+            display: none;
+        }
+
+        .profile-tab-content.active {
+            display: block;
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-section h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-value {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 4px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .course-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-left: 15px;
+        }
+
+        .course-details {
+            flex: 1;
+        }
+
+        .course-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .course-progress {
+            width: 100px;
+            text-align: left;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .achievement-item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .achievement-icon {
+            font-size: 32px;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .achievement-date {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .certificate-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .certificate-item:last-child {
+            border-bottom: none;
+        }
+
+        .certificate-icon {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-left: 15px;
+        }
+
+        .certificate-details {
+            flex: 1;
+        }
+
+        .certificate-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .certificate-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .certificate-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-download {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .activity-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .settings-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-save {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 992px) {
+            .profile-container {
+                flex-direction: column;
+            }
+
+            .profile-main {
+                min-width: 100%;
+            }
+
+            .settings-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-avatar {
+                margin: 0 0 20px 0;
+            }
+
+            .profile-meta {
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <span>المتألق في التعليم</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="teachers.html">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <h1>الملف الشخصي</h1>
+            <nav class="breadcrumbs">
+                <a href="index.html">الرئيسية</a>
+                <span>الملف الشخصي</span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <div class="sidebar-section">
+                    <h3>معلومات الطالب</h3>
+                    <div class="student-info">
+                        <p><strong>الاسم:</strong> أحمد محمد</p>
+                        <p><strong>المستوى:</strong> الثانوية العامة</p>
+                        <p><strong>تاريخ الانضمام:</strong> 15 يناير 2023</p>
+                        <p><strong>نوع الاشتراك:</strong> <span class="badge badge-premium">محترف</span></p>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>تقدم التعلم</h3>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>الرياضيات</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>الفيزياء</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>اللغة العربية</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>اللغة الإنجليزية</span>
+                            <span>45%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>الإحصائيات</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">الدروس المكتملة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">الاختبارات المجتازة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">86</div>
+                            <div class="stat-label">ساعات التعلم</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">الشهادات</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-main">
+                <div class="profile-header">
+                    <img src="images/student-avatar.jpg" alt="صورة الطالب" class="profile-avatar">
+                    <div class="profile-info">
+                        <h1>أحمد محمد</h1>
+                        <p>طالب في الثانوية العامة - السنة الثالثة</p>
+                        <div class="profile-meta">
+                            <div class="profile-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>الجزائر العاصمة، الجزائر</span>
+                            </div>
+                            <div class="profile-meta-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>ahmed@example.com</span>
+                            </div>
+                            <div class="profile-meta-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+213 123 456 789</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tabs">
+                    <div class="profile-tab active" data-tab="courses">الدروس</div>
+                    <div class="profile-tab" data-tab="achievements">الإنجازات</div>
+                    <div class="profile-tab" data-tab="certificates">الشهادات</div>
+                    <div class="profile-tab" data-tab="activity">النشاط</div>
+                    <div class="profile-tab" data-tab="settings">الإعدادات</div>
+                </div>
+
+                <div class="profile-tab-content active" id="tab-courses">
+                    <h2>الدروس الحالية</h2>
+                    <div class="courses-list">
+                        <div class="course-item">
+                            <img src="images/math-course.jpg" alt="الرياضيات" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">حساب التفاضل والتكامل - المستوى المتقدم</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> أ. كريم عبد النور</span>
+                                    <span><i class="fas fa-clock"></i> 12 درس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <img src="images/physics-course.jpg" alt="الفيزياء" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">الميكانيكا والديناميكا الحرارية</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> د. سمير بلقاسم</span>
+                                    <span><i class="fas fa-clock"></i> 10 دروس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <img src="images/arabic-course.jpg" alt="اللغة العربية" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">البلاغة والنقد الأدبي</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> أ. فاطمة الزهراء</span>
+                                    <span><i class="fas fa-clock"></i> 8 دروس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <img src="images/english-course.jpg" alt="اللغة الإنجليزية" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">اللغة الإنجليزية - المستوى المتوسط</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> أ. سارة بن علي</span>
+                                    <span><i class="fas fa-clock"></i> 15 درس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>الدروس المكتملة</h2>
+                    <div class="courses-list">
+                        <div class="course-item">
+                            <img src="images/chemistry-course.jpg" alt="الكيمياء" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">الكيمياء العضوية - أساسيات</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> د. نبيل مرزوق</span>
+                                    <span><i class="fas fa-clock"></i> 8 دروس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <img src="images/history-course.jpg" alt="التاريخ" class="course-image">
+                            <div class="course-details">
+                                <div class="course-title">تاريخ الجزائر المعاصر</div>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-user"></i> أ. محمد بوضياف</span>
+                                    <span><i class="fas fa-clock"></i> 6 دروس</span>
+                                </div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tab-content" id="tab-achievements">
+                    <h2>الإنجازات</h2>
+                    <div class="achievement-grid">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="achievement-title">بداية رحلة التعلم</div>
+                            <div class="achievement-date">15 يناير 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="achievement-title">7 أيام متتالية</div>
+                            <div class="achievement-date">22 يناير 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="achievement-title">إكمال 10 دروس</div>
+                            <div class="achievement-date">5 فبراير 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-title">علامة كاملة في الاختبار</div>
+                            <div class="achievement-date">18 فبراير 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="achievement-title">إكمال مادة كاملة</div>
+                            <div class="achievement-date">10 مارس 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="achievement-title">50 ساعة تعلم</div>
+                            <div class="achievement-date">25 مارس 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-title">مساعدة 5 طلاب</div>
+                            <div class="achievement-date">12 أبريل 2023</div>
+                        </div>
+
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="achievement-title">إكمال 25 درس</div>
+                            <div class="achievement-date">30 أبريل 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tab-content" id="tab-certificates">
+                    <h2>الشهادات</h2>
+                    <div class="certificates-list">
+                        <div class="certificate-item">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certificate-details">
+                                <div class="certificate-title">أساسيات الكيمياء العضوية</div>
+                                <div class="certificate-meta">
+                                    <span><i class="fas fa-calendar"></i> 15 مارس 2023</span>
+                                    <span><i class="fas fa-user"></i> د. نبيل مرزوق</span>
+                                </div>
+                            </div>
+                            <div class="certificate-actions">
+                                <button class="certificate-btn btn-view">عرض</button>
+                                <button class="certificate-btn btn-download">تحميل</button>
+                            </div>
+                        </div>
+
+                        <div class="certificate-item">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certificate-details">
+                                <div class="certificate-title">تاريخ الجزائر المعاصر</div>
+                                <div class="certificate-meta">
+                                    <span><i class="fas fa-calendar"></i> 20 أبريل 2023</span>
+                                    <span><i class="fas fa-user"></i> أ. محمد بوضياف</span>
+                                </div>
+                            </div>
+                            <div class="certificate-actions">
+                                <button class="certificate-btn btn-view">عرض</button>
+                                <button class="certificate-btn btn-download">تحميل</button>
+                            </div>
+                        </div>
+
+                        <div class="certificate-item">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certificate-details">
+                                <div class="certificate-title">مهارات اللغة العربية - المستوى الأول</div>
+                                <div class="certificate-meta">
+                                    <span><i class="fas fa-calendar"></i> 5 مايو 2023</span>
+                                    <span><i class="fas fa-user"></i> أ. فاطمة الزهراء</span>
+                                </div>
+                            </div>
+                            <div class="certificate-actions">
+                                <button class="certificate-btn btn-view">عرض</button>
+                                <button class="certificate-btn btn-download">تحميل</button>
+                            </div>
+                        </div>
+
+                        <div class="certificate-item">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certificate-details">
+                                <div class="certificate-title">أساسيات الفيزياء - الميكانيكا</div>
+                                <div class="certificate-meta">
+                                    <span><i class="fas fa-calendar"></i> 18 مايو 2023</span>
+                                    <span><i class="fas fa-user"></i> د. سمير بلقاسم</span>
+                                </div>
+                            </div>
+                            <div class="certificate-actions">
+                                <button class="certificate-btn btn-view">عرض</button>
+                                <button class="certificate-btn btn-download">تحميل</button>
+                            </div>
+                        </div>
+
+                        <div class="certificate-item">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certificate-details">
+                                <div class="certificate-title">الرياضيات - الجبر الخطي</div>
+                                <div class="certificate-meta">
+                                    <span><i class="fas fa-calendar"></i> 2 يونيو 2023</span>
+                                    <span><i class="fas fa-user"></i> أ. كريم عبد النور</span>
+                                </div>
+                            </div>
+                            <div class="certificate-actions">
+                                <button class="certificate-btn btn-view">عرض</button>
+                                <button class="certificate-btn btn-download">تحميل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tab-content" id="tab-activity">
+                    <h2>النشاط الأخير</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">أكملت درس "المعادلات التفاضلية من الدرجة الثانية"</div>
+                                <div class="activity-time">اليوم، 10:30 صباحاً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">أجبت على اختبار "الميكانيكا والديناميكا الحرارية"</div>
+                                <div class="activity-time">اليوم، 9:15 صباحاً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">علقت على درس "البلاغة والنقد الأدبي"</div>
+                                <div class="activity-time">أمس، 4:45 مساءً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">قمت بتحميل ملخص "اللغة الإنجليزية - قواعد الأزمنة"</div>
+                                <div class="activity-time">أمس، 2:30 مساءً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">شاهدت فيديو "شرح التفاعلات الكيميائية"</div>
+                                <div class="activity-time">أمس، 11:20 صباحاً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">قيّمت درس "تاريخ الجزائر المعاصر - الثورة الجزائرية"</div>
+                                <div class="activity-time">قبل يومين، 5:10 مساءً</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">حصلت على شهادة "الرياضيات - الجبر الخطي"</div>
+                                <div class="activity-time">قبل 3 أيام، 1:45 مساءً</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tab-content" id="tab-settings">
+                    <h2>إعدادات الحساب</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="fullname">الاسم الكامل</label>
+                            <input type="text" id="fullname" value="أحمد محمد">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" value="ahmed@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" value="+213 123 456 789">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">المدينة</label>
+                            <input type="text" id="location" value="الجزائر العاصمة، الجزائر">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education-level">المستوى التعليمي</label>
+                            <select id="education-level">
+                                <option>المرحلة الابتدائية</option>
+                                <option>المرحلة المتوسطة</option>
+                                <option selected>الثانوية العامة</option>
+                                <option>الجامعة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grade">الصف الدراسي</label>
+                            <select id="grade">
+                                <option>السنة الأولى</option>
+                                <option>السنة الثانية</option>
+                                <option selected>السنة الثالثة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">كلمة المرور الجديدة</label>
+                            <input type="password" id="password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">تأكيد كلمة المرور</label>
+                            <input type="password" id="confirm-password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">نبذة شخصية</label>
+                            <textarea id="bio">طالب في الثانوية العامة، أهتم بالرياضيات والعلوم وأطمح للالتحاق بكلية الهندسة.</textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel">إلغاء</button>
+                            <button type="button" class="btn-save">حفظ التغييرات</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="المتألق في التعليم">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>معلومات الاتصال</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع ديدوش مراد، الجزائر العاصمة</li>
+                        <li><i class="fas fa-phone"></i> +213 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@motaalik.dz</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>تابعنا على</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 - المتألق في التعليم</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تبديل التبويبات
+            const tabs = document.querySelectorAll('.profile-tab');
+            const tabContents = document.querySelectorAll('.profile-tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // إزالة الفئة النشطة من جميع التبويبات
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // إضافة الفئة النشطة للتبويب المحدد
+                    tab.classList.add('active');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+            
+            // أزرار الشهادات
+            const viewButtons = document.querySelectorAll('.btn-view');
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const certificateTitle = this.closest('.certificate-item').querySelector('.certificate-title').textContent;
+                    alert(`عرض شهادة: ${certificateTitle}`);
+                });
+            });
+            
+            const downloadButtons = document.querySelectorAll('.btn-download');
+            downloadButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const certificateTitle = this.closest('.certificate-item').querySelector('.certificate-title').textContent;
+                    alert(`جاري تحميل شهادة: ${certificateTitle}`);
+                });
+            });
+            
+            // حفظ إعدادات الملف الشخصي
+            const saveButton = document.querySelector('.btn-save');
+            if (saveButton) {
+                saveButton.addEventListener('click', function() {
+                    alert('تم حفظ التغييرات بنجاح!');
+                });
+            }
+            
+            const cancelButton = document.querySelector('.btn-cancel');
+            if (cancelButton) {
+                cancelButton.addEventListener('click', function() {
+                    if (confirm('هل أنت متأكد من إلغاء التغييرات؟')) {
+                        // إعادة تحميل الصفحة أو إعادة تعيين النموذج
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعلمون - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .teachers-section {
+            padding: 3rem 0;
+        }
+
+        .filters-sidebar {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-title i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .filter-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .filter-option {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-checkbox {
+            margin-left: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .filter-count {
+            font-size: 0.8rem;
+            color: #999;
+            margin-right: 0.5rem;
+        }
+
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .teacher-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .teacher-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .badge-featured {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .teacher-content {
+            padding: 1.5rem;
+        }
+
+        .teacher-name {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .teacher-title {
+            color: #3498db;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .teacher-subjects {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-subject {
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .teacher-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .teacher-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .teacher-bio {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .teacher-action-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .teacher-action-btn i {
+            margin-left: 0.5rem;
+        }
+
+        .btn-profile {
+            background-color: #3498db;
+            color: #fff;
+            margin-left: 0.5rem;
+        }
+
+        .btn-profile:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-contact {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .btn-contact:hover {
+            background-color: #e9ecef;
+        }
+
+        .featured-teachers {
+            margin-bottom: 3rem;
+        }
+
+        .featured-teachers .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .featured-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+        }
+
+        .featured-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .featured-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .featured-slider::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .featured-slider::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .featured-slide {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-left: 1.5rem;
+            scroll-snap-align: start;
+        }
+
+        .featured-slide:last-child {
+            margin-left: 0;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .pagination-item {
+            margin: 0 0.25rem;
+        }
+
+        .pagination-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-link:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pagination-link.active {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .pagination-link.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .teacher-profile-header {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            display: flex;
+        }
+
+        .teacher-profile-image {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .teacher-profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-profile-info {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .teacher-profile-name {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .teacher-profile-title {
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .teacher-profile-stats {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-profile-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 2rem;
+        }
+
+        .teacher-profile-stat:last-child {
+            margin-left: 0;
+        }
+
+        .profile-stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-stat-label {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .teacher-profile-subjects {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-profile-subject {
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-left: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .teacher-profile-actions {
+            display: flex;
+        }
+
+        .profile-action-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .profile-action-btn i {
+            margin-left: 0.75rem;
+        }
+
+        .teacher-profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+
+        .profile-content-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-content-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .profile-content-title {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-content-title i {
+            margin-left: 0.75rem;
+            color: #3498db;
+        }
+
+        .profile-bio {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .profile-education-item,
+        .profile-experience-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-education-item:last-child,
+        .profile-experience-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .education-degree,
+        .experience-position {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .education-institution,
+        .experience-company {
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+            color: #3498db;
+        }
+
+        .education-date,
+        .experience-date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .education-date i,
+        .experience-date i {
+            margin-left: 0.5rem;
+        }
+
+        .education-description,
+        .experience-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .profile-skills {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .profile-skill {
+            margin-bottom: 1.5rem;
+            width: 50%;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skill-percentage {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background-color: #f1f1f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 3px;
+        }
+
+        .profile-lessons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-lesson {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-lesson:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-icon i {
+            color: #3498db;
+        }
+
+        .lesson-info {
+            flex-grow: 1;
+        }
+
+        .lesson-name {
+            font-size: 1rem;
+            margin: 0 0 0.25rem;
+            color: #333;
+        }
+
+        .lesson-details {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+        }
+
+        .lesson-detail {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .lesson-detail i {
+            margin-left: 0.25rem;
+            font-size: 0.7rem;
+        }
+
+        .lesson-action {
+            flex-shrink: 0;
+        }
+
+        .lesson-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .profile-reviews {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-review {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-review:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-meta {
+            flex-grow: 1;
+        }
+
+        .review-author {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .review-rating {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-star {
+            color: #ffc107;
+            margin-left: 0.25rem;
+        }
+
+        .review-content {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .filters-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .teacher-profile-header {
+                flex-direction: column;
+            }
+
+            .teacher-profile-image {
+                width: 100%;
+                height: 300px;
+            }
+
+            .profile-content-col {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .profile-skill {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-slide {
+                width: 250px;
+            }
+
+            .teacher-profile-stats {
+                flex-wrap: wrap;
+            }
+
+            .teacher-profile-stat {
+                width: 50%;
+                margin-bottom: 1rem;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html">الدروس</a></li>
+                    <li><a href="teachers.html" class="active">المعلمون</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>المعلمون المتميزون</h2>
+            <p>تعرف على نخبة من المعلمين المتخصصين في مختلف المجالات التعليمية</p>
+        </div>
+    </section>
+
+    <section class="featured-teachers">
+        <div class="container">
+            <div class="section-header">
+                <h3>معلمون مميزون</h3>
+                <p>نخبة من أفضل المعلمين في منصتنا</p>
+            </div>
+
+            <div class="featured-slider">
+                <div class="featured-slide">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="https://via.placeholder.com/300x250" alt="معلم مميز">
+                            <span class="teacher-badge badge-featured">مميز</span>
+                        </div>
+                        <div class="teacher-content">
+                            <h3 class="teacher-name">د. أحمد محمد</h3>
+                            <div class="teacher-title">أستاذ الرياضيات - المرحلة الثانوية</div>
+                            <div class="teacher-subjects">
+                                <span class="teacher-subject">الرياضيات</span>
+                                <span class="teacher-subject">الإحصاء</span>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="teacher-stat">
+                                    <span class="stat-value">120</span>
+                                    <span class="stat-label">درس</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">4.9</span>
+                                    <span class="stat-label">تقييم</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">1500+</span>
+                                    <span class="stat-label">طالب</span>
+                                </div>
+                            </div>
+                            <div class="teacher-bio">
+                                خبرة أكثر من 15 عاماً في تدريس الرياضيات للمرحلة الثانوية، متخصص في تبسيط المفاهيم المعقدة.
+                            </div>
+                            <div class="teacher-actions">
+                                <button class="teacher-action-btn btn-profile">
+                                    <i class="fas fa-user"></i>
+                                    عرض الملف
+                                </button>
+                                <button class="teacher-action-btn btn-contact">
+                                    <i class="fas fa-envelope"></i>
+                                    تواصل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="https://via.placeholder.com/300x250" alt="معلم مميز">
+                            <span class="teacher-badge badge-featured">مميز</span>
+                        </div>
+                        <div class="teacher-content">
+                            <h3 class="teacher-name">أ. سارة علي</h3>
+                            <div class="teacher-title">أستاذة اللغة العربية - المرحلة المتوسطة</div>
+                            <div class="teacher-subjects">
+                                <span class="teacher-subject">النحو</span>
+                                <span class="teacher-subject">البلاغة</span>
+                                <span class="teacher-subject">الأدب</span>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="teacher-stat">
+                                    <span class="stat-value">95</span>
+                                    <span class="stat-label">درس</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">4.8</span>
+                                    <span class="stat-label">تقييم</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">1200+</span>
+                                    <span class="stat-label">طالب</span>
+                                </div>
+                            </div>
+                            <div class="teacher-bio">
+                                متخصصة في تعليم اللغة العربية بأساليب مبتكرة، حاصلة على جوائز في طرق التدريس الحديثة.
+                            </div>
+                            <div class="teacher-actions">
+                                <button class="teacher-action-btn btn-profile">
+                                    <i class="fas fa-user"></i>
+                                    عرض الملف
+                                </button>
+                                <button class="teacher-action-btn btn-contact">
+                                    <i class="fas fa-envelope"></i>
+                                    تواصل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="https://via.placeholder.com/300x250" alt="معلم مميز">
+                            <span class="teacher-badge badge-featured">مميز</span>
+                        </div>
+                        <div class="teacher-content">
+                            <h3 class="teacher-name">د. محمد خالد</h3>
+                            <div class="teacher-title">أستاذ الفيزياء - المرحلة الثانوية</div>
+                            <div class="teacher-subjects">
+                                <span class="teacher-subject">الفيزياء</span>
+                                <span class="teacher-subject">الميكانيكا</span>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="teacher-stat">
+                                    <span class="stat-value">110</span>
+                                    <span class="stat-label">درس</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">4.9</span>
+                                    <span class="stat-label">تقييم</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">1350+</span>
+                                    <span class="stat-label">طالب</span>
+                                </div>
+                            </div>
+                            <div class="teacher-bio">
+                                دكتوراه في الفيزياء التطبيقية، خبرة 12 عاماً في التدريس، متخصص في تبسيط المفاهيم الفيزيائية المعقدة.
+                            </div>
+                            <div class="teacher-actions">
+                                <button class="teacher-action-btn btn-profile">
+                                    <i class="fas fa-user"></i>
+                                    عرض الملف
+                                </button>
+                                <button class="teacher-action-btn btn-contact">
+                                    <i class="fas fa-envelope"></i>
+                                    تواصل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            <img src="https://via.placeholder.com/300x250" alt="معلم مميز">
+                            <span class="teacher-badge badge-featured">مميز</span>
+                        </div>
+                        <div class="teacher-content">
+                            <h3 class="teacher-name">أ. نورة محمد</h3>
+                            <div class="teacher-title">أستاذة اللغة الفرنسية - جميع المراحل</div>
+                            <div class="teacher-subjects">
+                                <span class="teacher-subject">اللغة الفرنسية</span>
+                                <span class="teacher-subject">الترجمة</span>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="teacher-stat">
+                                    <span class="stat-value">85</span>
+                                    <span class="stat-label">درس</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">4.7</span>
+                                    <span class="stat-label">تقييم</span>
+                                </div>
+                                <div class="teacher-stat">
+                                    <span class="stat-value">950+</span>
+                                    <span class="stat-label">طالب</span>
+                                </div>
+                            </div>
+                            <div class="teacher-bio">
+                                متخصصة في تعليم اللغة الفرنسية لجميع المستويات، درست في فرنسا لمدة 5 سنوات، خبرة 10 سنوات في التدريس.
+                            </div>
+                            <div class="teacher-actions">
+                                <button class="teacher-action-btn btn-profile">
+                                    <i class="fas fa-user"></i>
+                                    عرض الملف
+                                </button>
+                                <button class="teacher-action-btn btn-contact">
+                                    <i class="fas fa-envelope"></i>
+                                    تواصل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="teachers-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="filters-sidebar">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="ابحث عن معلم...">
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-layer-group"></i>
+                                <span>المرحلة التعليمية</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-primary" class="filter-checkbox">
+                                    <label for="level-primary" class="filter-label">ابتدائي</label>
+                                    <span class="filter-count">(18)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-middle" class="filter-checkbox">
+                                    <label for="level-middle" class="filter-label">متوسط</label>
+                                    <span class="filter-count">(24)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-secondary" class="filter-checkbox">
+                                    <label for="level-secondary" class="filter-label">ثانوي</label>
+                                    <span class="filter-count">(32)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-university" class="filter-checkbox">
+                                    <label for="level-university" class="filter-label">جامعي</label>
+                                    <span class="filter-count">(15)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-book"></i>
+                                <span>المادة الدراسية</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-math" class="filter-checkbox">
+                                    <label for="subject-math" class="filter-label">الرياضيات</label>
+                                    <span class="filter-count">(22)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-physics" class="filter-checkbox">
+                                    <label for="subject-physics" class="filter-label">الفيزياء</label>
+                                    <span class="filter-count">(15)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-chemistry" class="filter-checkbox">
+                                    <label for="subject-chemistry" class="filter-label">الكيمياء</label>
+                                    <span class="filter-count">(12)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-biology" class="filter-checkbox">
+                                    <label for="subject-biology" class="filter-label">العلوم الطبيعية</label>
+                                    <span class="filter-count">(14)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-arabic" class="filter-checkbox">
+                                    <label for="subject-arabic" class="filter-label">اللغة العربية</label>
+                                    <span class="filter-count">(18)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-french" class="filter-checkbox">
+                                    <label for="subject-french" class="filter-label">اللغة الفرنسية</label>
+                                    <span class="filter-count">(10)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-english" class="filter-checkbox">
+                                    <label for="subject-english" class="filter-label">اللغة الإنجليزية</label>
+                                    <span class="filter-count">(12)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-history" class="filter-checkbox">
+                                    <label for="subject-history" class="filter-label">التاريخ</label>
+                                    <span class="filter-count">(8)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-star"></i>
+                                <span>التقييم</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="rating-5" class="filter-checkbox">
+                                    <label for="rating-5" class="filter-label">5 نجوم</label>
+                                    <span class="filter-count">(28)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="rating-4" class="filter-checkbox">
+                                    <label for="rating-4" class="filter-label">4 نجوم وأكثر</label>
+                                    <span class="filter-count">(45)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="rating-3" class="filter-checkbox">
+                                    <label for="rating-3" class="filter-label">3 نجوم وأكثر</label>
+                                    <span class="filter-count">(65)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="teachers-grid">
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">أ. كريم سعيد</h3>
+                                <div class="teacher-title">أستاذ الكيمياء - المرحلة الثانوية</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">الكيمياء</span>
+                                    <span class="teacher-subject">الكيمياء العضوية</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">75</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.6</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">850+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    خبرة 8 سنوات في تدريس الكيمياء للمرحلة الثانوية، متخصص في شرح التفاعلات الكيميائية بطرق مبسطة.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">أ. ليلى أحمد</h3>
+                                <div class="teacher-title">أستاذة العلوم الطبيعية - المرحلة الابتدائية</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">العلوم</span>
+                                    <span class="teacher-subject">البيئة</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">60</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">720+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    متخصصة في تعليم العلوم للأطفال بطرق تفاعلية وممتعة، خبرة 7 سنوات في التدريس للمرحلة الابتدائية.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">د. سمير حسن</h3>
+                                <div class="teacher-title">أستاذ التاريخ - المرحلة الثانوية والجامعية</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">التاريخ</span>
+                                    <span class="teacher-subject">الحضارة</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">90</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.7</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">980+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    دكتوراه في التاريخ الحديث، خبرة 14 عاماً في التدريس، متخصص في تاريخ الجزائر والمغرب العربي.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">أ. فاطمة علي</h3>
+                                <div class="teacher-title">أستاذة اللغة الإنجليزية - جميع المراحل</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">اللغة الإنجليزية</span>
+                                    <span class="teacher-subject">المحادثة</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">65</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.9</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">750+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    درست في بريطانيا لمدة 4 سنوات، خبرة 9 سنوات في تدريس اللغة الإنجليزية لجميع المستويات والأعمار.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">أ. يوسف محمد</h3>
+                                <div class="teacher-title">أستاذ الرياضيات - المرحلة المتوسطة</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">الرياضيات</span>
+                                    <span class="teacher-subject">الهندسة</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">55</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.5</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">620+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    متخصص في تبسيط مفاهيم الرياضيات للمرحلة المتوسطة، خبرة 6 سنوات في التدريس وإعداد الاختبارات.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="teacher-card">
+                            <div class="teacher-image">
+                                <img src="https://via.placeholder.com/300x250" alt="معلم">
+                            </div>
+                            <div class="teacher-content">
+                                <h3 class="teacher-name">أ. هدى سعيد</h3>
+                                <div class="teacher-title">أستاذة الفلسفة - المرحلة الثانوية</div>
+                                <div class="teacher-subjects">
+                                    <span class="teacher-subject">الفلسفة</span>
+                                    <span class="teacher-subject">المنطق</span>
+                                </div>
+                                <div class="teacher-stats">
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">45</span>
+                                        <span class="stat-label">درس</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">4.7</span>
+                                        <span class="stat-label">تقييم</span>
+                                    </div>
+                                    <div class="teacher-stat">
+                                        <span class="stat-value">520+</span>
+                                        <span class="stat-label">طالب</span>
+                                    </div>
+                                </div>
+                                <div class="teacher-bio">
+                                    متخصصة في تدريس الفلسفة والمنطق للمرحلة الثانوية، تعتمد على أساليب النقاش والتفكير النقدي.
+                                </div>
+                                <div class="teacher-actions">
+                                    <button class="teacher-action-btn btn-profile">
+                                        <i class="fas fa-user"></i>
+                                        عرض الملف
+                                    </button>
+                                    <button class="teacher-action-btn btn-contact">
+                                        <i class="fas fa-envelope"></i>
+                                        تواصل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link disabled">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link active">1</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">2</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">3</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">4</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h3>هل أنت معلم وترغب في الانضمام إلى منصتنا؟</h3>
+            <p>انضم إلى فريق المعلمين المتميزين وشارك خبراتك مع آلاف الطلاب</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">انضم كمعلم</a>
+                <a href="faq.html" class="btn btn-outline">المزيد من المعلومات</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+            
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Here you would implement the actual filtering logic
+                    // For now, we'll just log the selected filters
+                    const selectedFilters = [];
+                    filterCheckboxes.forEach(cb => {
+                        if (cb.checked) {
+                            selectedFilters.push(cb.id);
+                        }
+                    });
+                    console.log('Selected filters:', selectedFilters);
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+                console.log('Searching for:', searchTerm);
+                // Here you would implement the actual search logic
+            });
+
+            // Teacher profile buttons
+            const profileButtons = document.querySelectorAll('.btn-profile');
+            
+            profileButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Here you would implement the profile view logic
+                    // For now, we'll just log the action
+                    const teacherName = this.closest('.teacher-content').querySelector('.teacher-name').textContent;
+                    console.log('Viewing profile of:', teacherName);
+                });
+            });
+
+            // Teacher contact buttons
+            const contactButtons = document.querySelectorAll('.btn-contact');
+            
+            contactButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Here you would implement the contact logic
+                    // For now, we'll just log the action
+                    const teacherName = this.closest('.teacher-content').querySelector('.teacher-name').textContent;
+                    console.log('Contacting:', teacherName);
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

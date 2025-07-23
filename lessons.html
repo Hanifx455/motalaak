@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدروس - المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lessons-section {
+            padding: 3rem 0;
+        }
+
+        .filters-sidebar {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-title i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .filter-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .filter-option {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-checkbox {
+            margin-left: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .filter-count {
+            font-size: 0.8rem;
+            color: #999;
+            margin-right: 0.5rem;
+        }
+
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .lesson-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .lesson-image {
+            height: 180px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lesson-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .badge-free {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .badge-premium {
+            background-color: #FFC107;
+            color: #333;
+        }
+
+        .lesson-level {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            z-index: 1;
+        }
+
+        .lesson-content {
+            padding: 1.5rem;
+        }
+
+        .lesson-title {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .lesson-title a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .lesson-title a:hover {
+            color: #3498db;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .lesson-subject {
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-subject i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .lesson-date {
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-date i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .lesson-description {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .lesson-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .lesson-stat {
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-stat i {
+            margin-left: 0.5rem;
+            color: #3498db;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .pagination-item {
+            margin: 0 0.25rem;
+        }
+
+        .pagination-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-link:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pagination-link.active {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .pagination-link.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .featured-lessons {
+            margin-bottom: 3rem;
+        }
+
+        .featured-lessons .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .featured-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+        }
+
+        .featured-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .featured-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .featured-slider::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .featured-slider::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .featured-slide {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-left: 1.5rem;
+            scroll-snap-align: start;
+        }
+
+        .featured-slide:last-child {
+            margin-left: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .no-results p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .filters-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lessons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-slide {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>المتألق في التعليم</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                    <li><a href="lessons.html" class="active">الدروس</a></li>
+                    <li><a href="subscriptions.html">الاشتراكات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>الدروس التعليمية</h2>
+            <p>استكشف مجموعة متنوعة من الدروس لجميع المراحل التعليمية</p>
+        </div>
+    </section>
+
+    <section class="featured-lessons">
+        <div class="container">
+            <div class="section-header">
+                <h3>الدروس المميزة</h3>
+                <p>أحدث وأهم الدروس المضافة حديثاً</p>
+            </div>
+
+            <div class="featured-slider">
+                <div class="featured-slide">
+                    <div class="lesson-card">
+                        <div class="lesson-image">
+                            <img src="https://via.placeholder.com/300x180" alt="درس الرياضيات">
+                            <span class="lesson-badge badge-premium">مدفوع</span>
+                            <span class="lesson-level">ثانوي</span>
+                        </div>
+                        <div class="lesson-content">
+                            <h3 class="lesson-title"><a href="#">حل معادلات الدرجة الثانية</a></h3>
+                            <div class="lesson-meta">
+                                <div class="lesson-subject">
+                                    <i class="fas fa-book"></i>
+                                    <span>الرياضيات</span>
+                                </div>
+                                <div class="lesson-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>15 أكتوبر 2023</span>
+                                </div>
+                            </div>
+                            <div class="lesson-description">
+                                شرح مفصل لطرق حل معادلات الدرجة الثانية مع أمثلة وتمارين محلولة.
+                            </div>
+                            <div class="lesson-stats">
+                                <div class="lesson-stat">
+                                    <i class="fas fa-eye"></i>
+                                    <span>1250 مشاهدة</span>
+                                </div>
+                                <div class="lesson-stat">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <span>120 إعجاب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="lesson-card">
+                        <div class="lesson-image">
+                            <img src="https://via.placeholder.com/300x180" alt="درس الفيزياء">
+                            <span class="lesson-badge badge-free">مجاني</span>
+                            <span class="lesson-level">ثانوي</span>
+                        </div>
+                        <div class="lesson-content">
+                            <h3 class="lesson-title"><a href="#">قوانين نيوتن للحركة</a></h3>
+                            <div class="lesson-meta">
+                                <div class="lesson-subject">
+                                    <i class="fas fa-atom"></i>
+                                    <span>الفيزياء</span>
+                                </div>
+                                <div class="lesson-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>10 أكتوبر 2023</span>
+                                </div>
+                            </div>
+                            <div class="lesson-description">
+                                شرح قوانين نيوتن الثلاثة للحركة مع تطبيقات عملية وأمثلة توضيحية.
+                            </div>
+                            <div class="lesson-stats">
+                                <div class="lesson-stat">
+                                    <i class="fas fa-eye"></i>
+                                    <span>980 مشاهدة</span>
+                                </div>
+                                <div class="lesson-stat">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <span>95 إعجاب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="lesson-card">
+                        <div class="lesson-image">
+                            <img src="https://via.placeholder.com/300x180" alt="درس اللغة العربية">
+                            <span class="lesson-badge badge-premium">مدفوع</span>
+                            <span class="lesson-level">متوسط</span>
+                        </div>
+                        <div class="lesson-content">
+                            <h3 class="lesson-title"><a href="#">البلاغة العربية: علم البيان</a></h3>
+                            <div class="lesson-meta">
+                                <div class="lesson-subject">
+                                    <i class="fas fa-language"></i>
+                                    <span>اللغة العربية</span>
+                                </div>
+                                <div class="lesson-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>5 أكتوبر 2023</span>
+                                </div>
+                            </div>
+                            <div class="lesson-description">
+                                شرح مفصل لعلم البيان في البلاغة العربية مع أمثلة من الشعر والنثر.
+                            </div>
+                            <div class="lesson-stats">
+                                <div class="lesson-stat">
+                                    <i class="fas fa-eye"></i>
+                                    <span>750 مشاهدة</span>
+                                </div>
+                                <div class="lesson-stat">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <span>82 إعجاب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-slide">
+                    <div class="lesson-card">
+                        <div class="lesson-image">
+                            <img src="https://via.placeholder.com/300x180" alt="درس العلوم الطبيعية">
+                            <span class="lesson-badge badge-free">مجاني</span>
+                            <span class="lesson-level">ابتدائي</span>
+                        </div>
+                        <div class="lesson-content">
+                            <h3 class="lesson-title"><a href="#">جسم الإنسان: الجهاز الهضمي</a></h3>
+                            <div class="lesson-meta">
+                                <div class="lesson-subject">
+                                    <i class="fas fa-microscope"></i>
+                                    <span>العلوم الطبيعية</span>
+                                </div>
+                                <div class="lesson-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>1 أكتوبر 2023</span>
+                                </div>
+                            </div>
+                            <div class="lesson-description">
+                                تعرف على أعضاء الجهاز الهضمي ووظائفها مع رسومات توضيحية وأنشطة تفاعلية.
+                            </div>
+                            <div class="lesson-stats">
+                                <div class="lesson-stat">
+                                    <i class="fas fa-eye"></i>
+                                    <span>620 مشاهدة</span>
+                                </div>
+                                <div class="lesson-stat">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <span>75 إعجاب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lessons-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="filters-sidebar">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="ابحث عن درس...">
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-layer-group"></i>
+                                <span>المرحلة التعليمية</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-primary" class="filter-checkbox">
+                                    <label for="level-primary" class="filter-label">ابتدائي</label>
+                                    <span class="filter-count">(45)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-middle" class="filter-checkbox">
+                                    <label for="level-middle" class="filter-label">متوسط</label>
+                                    <span class="filter-count">(78)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-secondary" class="filter-checkbox">
+                                    <label for="level-secondary" class="filter-label">ثانوي</label>
+                                    <span class="filter-count">(120)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="level-university" class="filter-checkbox">
+                                    <label for="level-university" class="filter-label">جامعي</label>
+                                    <span class="filter-count">(35)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-book"></i>
+                                <span>المادة الدراسية</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-math" class="filter-checkbox">
+                                    <label for="subject-math" class="filter-label">الرياضيات</label>
+                                    <span class="filter-count">(65)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-physics" class="filter-checkbox">
+                                    <label for="subject-physics" class="filter-label">الفيزياء</label>
+                                    <span class="filter-count">(42)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-chemistry" class="filter-checkbox">
+                                    <label for="subject-chemistry" class="filter-label">الكيمياء</label>
+                                    <span class="filter-count">(38)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-biology" class="filter-checkbox">
+                                    <label for="subject-biology" class="filter-label">العلوم الطبيعية</label>
+                                    <span class="filter-count">(47)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-arabic" class="filter-checkbox">
+                                    <label for="subject-arabic" class="filter-label">اللغة العربية</label>
+                                    <span class="filter-count">(53)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-french" class="filter-checkbox">
+                                    <label for="subject-french" class="filter-label">اللغة الفرنسية</label>
+                                    <span class="filter-count">(31)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-english" class="filter-checkbox">
+                                    <label for="subject-english" class="filter-label">اللغة الإنجليزية</label>
+                                    <span class="filter-count">(29)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="subject-history" class="filter-checkbox">
+                                    <label for="subject-history" class="filter-label">التاريخ</label>
+                                    <span class="filter-count">(22)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="filter-title">
+                                <i class="fas fa-tag"></i>
+                                <span>نوع الدرس</span>
+                            </h4>
+                            <ul class="filter-options">
+                                <li class="filter-option">
+                                    <input type="checkbox" id="type-free" class="filter-checkbox">
+                                    <label for="type-free" class="filter-label">دروس مجانية</label>
+                                    <span class="filter-count">(120)</span>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="type-premium" class="filter-checkbox">
+                                    <label for="type-premium" class="filter-label">دروس مدفوعة</label>
+                                    <span class="filter-count">(158)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="lessons-grid">
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس الرياضيات">
+                                <span class="lesson-badge badge-free">مجاني</span>
+                                <span class="lesson-level">ثانوي</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">المتتاليات العددية</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-book"></i>
+                                        <span>الرياضيات</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>20 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    شرح المتتاليات الحسابية والهندسية مع تطبيقات وتمارين محلولة.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>850 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>92 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس الكيمياء">
+                                <span class="lesson-badge badge-premium">مدفوع</span>
+                                <span class="lesson-level">ثانوي</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">التفاعلات الكيميائية</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-flask"></i>
+                                        <span>الكيمياء</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>15 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    شرح أنواع التفاعلات الكيميائية وكيفية موازنة المعادلات الكيميائية.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>720 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>78 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس اللغة العربية">
+                                <span class="lesson-badge badge-free">مجاني</span>
+                                <span class="lesson-level">متوسط</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">النحو: المفعول به</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-language"></i>
+                                        <span>اللغة العربية</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>10 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    شرح المفعول به وأنواعه وإعرابه مع أمثلة وتدريبات متنوعة.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>680 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>65 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس التاريخ">
+                                <span class="lesson-badge badge-premium">مدفوع</span>
+                                <span class="lesson-level">ثانوي</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">الثورة الجزائرية</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-history"></i>
+                                        <span>التاريخ</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>5 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    دراسة شاملة للثورة الجزائرية: الأسباب، المراحل، الشخصيات البارزة والنتائج.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>920 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>105 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس الفيزياء">
+                                <span class="lesson-badge badge-free">مجاني</span>
+                                <span class="lesson-level">متوسط</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">الكهرباء الساكنة</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-atom"></i>
+                                        <span>الفيزياء</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>1 سبتمبر 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    مفاهيم الكهرباء الساكنة والشحنات الكهربائية مع تجارب عملية بسيطة.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>580 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>62 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-image">
+                                <img src="https://via.placeholder.com/300x180" alt="درس اللغة الفرنسية">
+                                <span class="lesson-badge badge-premium">مدفوع</span>
+                                <span class="lesson-level">ثانوي</span>
+                            </div>
+                            <div class="lesson-content">
+                                <h3 class="lesson-title"><a href="#">قواعد الأزمنة في اللغة الفرنسية</a></h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-subject">
+                                        <i class="fas fa-language"></i>
+                                        <span>اللغة الفرنسية</span>
+                                    </div>
+                                    <div class="lesson-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>28 أغسطس 2023</span>
+                                    </div>
+                                </div>
+                                <div class="lesson-description">
+                                    شرح مفصل لأزمنة الأفعال في اللغة الفرنسية مع تمارين تطبيقية.
+                                </div>
+                                <div class="lesson-stats">
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-eye"></i>
+                                        <span>490 مشاهدة</span>
+                                    </div>
+                                    <div class="lesson-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>55 إعجاب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link disabled">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link active">1</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">2</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">3</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">4</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">5</a>
+                        </div>
+                        <div class="pagination-item">
+                            <a href="#" class="pagination-link">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h3>هل تريد المزيد من الدروس المتميزة؟</h3>
+            <p>اشترك في إحدى باقاتنا للوصول إلى جميع الدروس المدفوعة والمحتوى الحصري</p>
+            <div class="cta-buttons">
+                <a href="subscriptions.html" class="btn btn-primary">اشترك الآن</a>
+                <a href="faq.html" class="btn btn-outline">المزيد من المعلومات</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المتألق في التعليم</h3>
+                    <p>منصة تعليمية رائدة لجميع المراحل التعليمية في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="subscriptions.html">الاشتراكات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@motalk.dz</p>
+                    <p>الهاتف: 0123456789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المتألق في التعليم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+            
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Here you would implement the actual filtering logic
+                    // For now, we'll just log the selected filters
+                    const selectedFilters = [];
+                    filterCheckboxes.forEach(cb => {
+                        if (cb.checked) {
+                            selectedFilters.push(cb.id);
+                        }
+                    });
+                    console.log('Selected filters:', selectedFilters);
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+                console.log('Searching for:', searchTerm);
+                // Here you would implement the actual search logic
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن | المتألق في التعليم</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* أنماط خاصة بصفحة من نحن */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-section:nth-child(even) {
+            background-color: #f5f7fa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .about-content-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #3498db;
+            top: 0;
+            bottom: 0;
+            right: 50%;
+            margin-right: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #3498db;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .timeline-text h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .timeline-text p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            width: 280px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-image {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .team-position {
+            color: #3498db;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .team-bio {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .value-item {
+            width: 280px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+        }
+
+        .value-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .value-text {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .testimonial-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-content {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-content::before {
+            content: '\201C';
+            font-size: 60px;
+            color: #3498db;
+            position: absolute;
+            right: -10px;
+            top: -20px;
+            opacity: 0.2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 15px;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .partners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .partner-item {
+            width: 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .partner-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .partner-item img {
+            max-width: 100%;
+            max-height: 80%;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            border-radius: 10px;
+            margin: 60px 0;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-cta-primary {
+            background-color: white;
+            color: #3498db;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-cta-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s;
+        }
+
+        .btn-cta-primary:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-3px);
+        }
+
+        .btn-cta-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-content-reverse {
+                flex-direction: column;
+            }
+
+            .timeline::after {
+                right: 31px;
+                margin-right: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-right: 70px;
+                padding-left: 25px;
+            }
+
+            .timeline-item.right {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                right: 20px;
+            }
+
+            .timeline-item.right::after {
+                left: auto;
+                right: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- القائمة العلوية -->
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="المتألق في التعليم" class="logo">
+                </a>
+            </div>
+            <nav class="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li class="nav-item"><a href="education-levels.html" class="nav-link">المراحل التعليمية</a></li>
+                    <li class="nav-item"><a href="lessons.html" class="nav-link">الدروس</a></li>
+                    <li class="nav-item"><a href="teachers.html" class="nav-link">المعلمون</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">المدونة</a></li>
+                    <li class="nav-item active"><a href="about.html" class="nav-link">من نحن</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-actions">
+                <a href="login.html" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+                <button class="navbar-toggler">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم البداية -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>من نحن</h1>
+            <p>منصة المتألق في التعليم هي منصة تعليمية رائدة في الجزائر تهدف إلى توفير تعليم عالي الجودة لجميع الطلاب في مختلف المراحل التعليمية</p>
+        </div>
+    </section>
+
+    <!-- قسم قصتنا -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>قصتنا</h2>
+                <p>كيف بدأت رحلتنا في تطوير التعليم الإلكتروني في الجزائر</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>بداية الفكرة</h3>
+                    <p>بدأت فكرة منصة المتألق في التعليم في عام 2020، عندما لاحظ فريق من المعلمين والمتخصصين في التعليم الحاجة الملحة لتوفير موارد تعليمية عالية الجودة للطلاب الجزائريين عبر الإنترنت، خاصة في ظل الظروف الاستثنائية التي فرضتها جائحة كورونا.</p>
+                    <p>كان هدفنا الأساسي هو إنشاء منصة تعليمية شاملة تلبي احتياجات جميع المراحل التعليمية في الجزائر، وتوفر محتوى تعليمي عالي الجودة باللغة العربية، مع مراعاة المناهج الدراسية الجزائرية.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-story.jpg" alt="قصة المتألق في التعليم">
+                </div>
+            </div>
+
+            <div class="about-content about-content-reverse">
+                <div class="about-text">
+                    <h3>مرحلة التطوير</h3>
+                    <p>بعد إجراء دراسات مستفيضة حول احتياجات الطلاب والمعلمين في الجزائر، بدأنا في تطوير المنصة بالتعاون مع نخبة من المعلمين المتميزين والخبراء التربويين وخبراء التكنولوجيا.</p>
+                    <p>استغرق تطوير المنصة أكثر من عام، حيث حرصنا على تصميم واجهة سهلة الاستخدام وتوفير محتوى تعليمي متنوع يشمل الدروس النظرية والتمارين التطبيقية والاختبارات التفاعلية.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-development.jpg" alt="تطوير المتألق في التعليم">
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>الانطلاقة الرسمية</h3>
+                    <p>في سبتمبر 2021، تم إطلاق النسخة التجريبية من منصة المتألق في التعليم، والتي لاقت استحسانًا كبيرًا من الطلاب والمعلمين وأولياء الأمور. وبعد تلقي الملاحظات والاقتراحات، قمنا بتطوير المنصة وإضافة المزيد من الميزات والمحتوى التعليمي.</p>
+                    <p>في يناير 2022، تم الإطلاق الرسمي للمنصة بحلتها الجديدة، لتصبح واحدة من أبرز المنصات التعليمية في الجزائر، حيث تخدم آلاف الطلاب في مختلف المراحل التعليمية.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-launch.jpg" alt="إطلاق المتألق في التعليم">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>إحصائيات المنصة</h2>
+                <p>أرقام تعكس نجاح منصة المتألق في التعليم</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">طالب مسجل</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">معلم متميز</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3,000+</div>
+                    <div class="stat-label">درس تعليمي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">48</div>
+                    <div class="stat-label">ولاية جزائرية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخط الزمني -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>مسيرتنا</h2>
+                <p>أهم المحطات في رحلة منصة المتألق في التعليم</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-text">
+                            <h4>بداية الفكرة</h4>
+                            <p>انطلاق فكرة إنشاء منصة تعليمية إلكترونية شاملة للطلاب الجزائريين</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-text">
+                            <h4>النسخة التجريبية</h4>
+                            <p>إطلاق النسخة التجريبية من المنصة وتسجيل أول 1000 طالب</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-text">
+                            <h4>الإطلاق الرسمي</h4>
+                            <p>الإطلاق الرسمي للمنصة بحلتها الجديدة وتوسيع نطاق المحتوى التعليمي</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-text">
+                            <h4>جائزة الابتكار</h4>
+                            <p>الحصول على جائزة أفضل منصة تعليمية مبتكرة في الجزائر</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-text">
+                            <h4>توسيع النطاق</h4>
+                            <p>إضافة المرحلة الجامعية وتوسيع نطاق الخدمات التعليمية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-text">
+                            <h4>50,000 طالب</h4>
+                            <p>تجاوز عدد الطلاب المسجلين في المنصة 50,000 طالب من مختلف أنحاء الجزائر</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم فريق العمل -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>فريق العمل</h2>
+                <p>تعرف على الفريق المتميز وراء نجاح منصة المتألق في التعليم</p>
+            </div>
+
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/team-1.jpg" alt="أحمد بن علي">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">أحمد بن علي</h3>
+                        <p class="team-position">المؤسس والمدير التنفيذي</p>
+                        <p class="team-bio">أستاذ جامعي سابق ومتخصص في تكنولوجيا التعليم، يمتلك خبرة أكثر من 15 عامًا في مجال التعليم.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/team-2.jpg" alt="سارة محمد">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">سارة محمد</h3>
+                        <p class="team-position">مديرة المحتوى التعليمي</p>
+                        <p class="team-bio">معلمة سابقة ومتخصصة في المناهج التعليمية، تشرف على تطوير وتنسيق المحتوى التعليمي في المنصة.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/team-3.jpg" alt="كريم عبد الله">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">كريم عبد الله</h3>
+                        <p class="team-position">مدير التكنولوجيا</p>
+                        <p class="team-bio">مهندس برمجيات ذو خبرة واسعة في تطوير المنصات التعليمية والتقنيات الحديثة في مجال التعليم الإلكتروني.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="images/team-4.jpg" alt="ليلى أحمد">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">ليلى أحمد</h3>
+                        <p class="team-position">مديرة التسويق والعلاقات العامة</p>
+                        <p class="team-bio">متخصصة في التسويق الرقمي والعلاقات العامة، تتولى مسؤولية التواصل مع الطلاب والمعلمين وتطوير استراتيجيات التسويق.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم قيمنا -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>قيمنا</h2>
+                <p>المبادئ والقيم التي نؤمن بها ونسعى لتحقيقها</p>
+            </div>
+
+            <div class="values-container">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="value-title">التميز التعليمي</h3>
+                    <p class="value-text">نسعى دائمًا لتقديم محتوى تعليمي عالي الجودة يساعد الطلاب على تحقيق أقصى استفادة وتطوير مهاراتهم.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="value-title">التعليم للجميع</h3>
+                    <p class="value-text">نؤمن بأن التعليم حق للجميع، ونسعى لتوفير فرص تعليمية متكافئة لجميع الطلاب بغض النظر عن ظروفهم.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">الابتكار المستمر</h3>
+                    <p class="value-text">نحرص على مواكبة أحدث التقنيات والأساليب التعليمية وتطبيقها لتحسين تجربة التعلم.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="value-title">الشراكة المجتمعية</h3>
+                    <p class="value-text">نؤمن بأهمية التعاون مع المؤسسات التعليمية والمجتمعية لتحقيق أهدافنا المشتركة في تطوير التعليم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم آراء الطلاب -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء طلابنا</h2>
+                <p>ماذا يقول طلابنا عن تجربتهم مع منصة المتألق في التعليم</p>
+            </div>
+
+            <div class="testimonials-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>منصة المتألق في التعليم ساعدتني كثيرًا في فهم المواد الدراسية بطريقة سهلة وممتعة. الشروحات واضحة والتمارين متنوعة، وهذا ما ساعدني على تحسين مستواي الدراسي بشكل ملحوظ.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="images/student-1.jpg" alt="محمد أمين">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>محمد أمين</h4>
+                            <p>طالب في السنة الثالثة ثانوي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>كأم لطالبة في المرحلة المتوسطة، وجدت في منصة المتألق في التعليم الحل الأمثل لمساعدة ابنتي في دراستها. المحتوى التعليمي ممتاز والمعلمون متميزون، وأصبحت ابنتي أكثر حماسًا للتعلم.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="images/parent-1.jpg" alt="سميرة حسين">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>سميرة حسين</h4>
+                            <p>ولية أمر</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>كمعلم، أجد أن منصة المتألق في التعليم توفر لي أدوات ممتازة لتقديم دروسي بطريقة تفاعلية وجذابة. كما أن التواصل مع الطلاب أصبح أسهل وأكثر فعالية من خلال المنصة.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="images/teacher-1.jpg" alt="عبد الرحمن مالك">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>عبد الرحمن مالك</h4>
+                            <p>معلم رياضيات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم شركاؤنا -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>شركاؤنا</h2>
+                <p>المؤسسات والشركات التي نتعاون معها لتطوير التعليم</p>
+            </div>
+
+            <div class="partners-container">
+                <div class="partner-item">
+                    <img src="images/partner-1.png" alt="وزارة التربية الوطنية">
+                </div>
+                <div class="partner-item">
+                    <img src="images/partner-2.png" alt="جامعة الجزائر">
+                </div>
+                <div class="partner-item">
+                    <img src="images/partner-3.png" alt="مؤسسة التعليم المتميز">
+                </div>
+                <div class="partner-item">
+                    <img src="images/partner-4.png" alt="شركة تكنولوجيا التعليم">
+                </div>
+                <div class="partner-item">
+                    <img src="images/partner-5.png" alt="مركز البحوث التربوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الدعوة للعمل -->
+    <section class="about-section">
+        <div class="container">
+            <div class="cta-section">
+                <h2 class="cta-title">انضم إلى منصة المتألق في التعليم اليوم</h2>
+                <p class="cta-text">استفد من آلاف الدروس والموارد التعليمية لجميع المراحل الدراسية. سجل الآن وابدأ رحلتك التعليمية مع نخبة من المعلمين المتميزين.</p>
+                <div class="cta-buttons">
+                    <a href="register.html" class="btn-cta-primary">إنشاء حساب مجاني</a>
+                    <a href="contact.html" class="btn-cta-secondary">تواصل معنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-white.svg" alt="المتألق في التعليم" class="logo">
+                    <p>منصة تعليمية رائدة توفر محتوى تعليمي عالي الجودة لجميع المراحل التعليمية في الجزائر.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="education-levels.html">المراحل التعليمية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>اتصل بنا</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> العنوان: حي النخيل، الجزائر العاصمة، الجزائر</p>
+                    <p><i class="fas fa-phone"></i> الهاتف: 0123456789</p>
+                    <p><i class="fas fa-envelope"></i> البريد الإلكتروني: info@motaalik.dz</p>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>النشرة الإخبارية</h3>
+                    <p>اشترك في نشرتنا الإخبارية للحصول على آخر الأخبار والعروض</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                        <button type="submit">اشتراك</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    <p>جميع الحقوق محفوظة &copy; 2023 المتألق في التعليم</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تفعيل القائمة المتجاوبة
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarMenu = document.querySelector('.navbar-menu');
+            
+            if (navbarToggler && navbarMenu) {
+                navbarToggler.addEventListener('click', function() {
+                    navbarMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+            
+            // تحريك الأرقام في قسم الإحصائيات
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            function animateNumbers() {
+                statNumbers.forEach(statNumber => {
+                    const finalValue = parseInt(statNumber.textContent.replace(/,/g, '').replace(/\+/g, ''));
+                    let startValue = 0;
+                    const duration = 2000;
+                    const increment = Math.ceil(finalValue / (duration / 20));
+                    
+                    const counter = setInterval(() => {
+                        startValue += increment;
+                        if (startValue > finalValue) {
+                            startValue = finalValue;
+                            clearInterval(counter);
+                        }
+                        
+                        let displayValue = startValue.toString();
+                        if (statNumber.textContent.includes('+')) {
+                            displayValue += '+';
+                        }
+                        
+                        statNumber.textContent = displayValue;
+                    }, 20);
+                });
+            }
+            
+            // تفعيل تحريك الأرقام عند ظهور قسم الإحصائيات في الشاشة
+            const statsSection = document.querySelector('.stats-container');
+            
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateNumbers();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(statsSection);
+            }
+        });
+    </script>
+</body>
+</html>
